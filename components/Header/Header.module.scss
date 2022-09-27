@@ -1,0 +1,30 @@
+.portfolioHeader {
+    list-style-type: none;
+    li {
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+        padding: 0.5rem 1.5rem;
+        border-radius: 0.25rem;
+        font-weight: bold;
+        outline-offset: 4px;
+        box-shadow: 2px 3px 0px 0px rgb(0 0 0 / 0.2);
+
+        &[data-disabled]:not([data-disabled="true"]):hover, &[data-active="true"] {
+            color: black;
+            background-color: theme('colors.primary');
+        }
+
+        &[data-disabled]:not([data-disabled="true"]){
+            &:hover {
+                box-shadow: 5px 6px 0px 0px theme('colors.primary-compliment');
+            }
+        }
+
+        &[data-disabled="true"] {
+            color: gray;
+            cursor: auto;
+        }
+    }
+}
