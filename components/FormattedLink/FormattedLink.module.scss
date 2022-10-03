@@ -1,0 +1,19 @@
+.formattedLink {
+    text-decoration: underline;
+}
+
+.formattedLink:link {
+    color: theme('colors.primary');
+}
+
+.formattedLink:visited {
+    color: theme('colors.primary-compliment');
+}
+
+.formattedLink:hover {
+    color: theme('colors.primary-compliment');
+}
+
+.formattedLink:active {
+    color: theme('colors.primary-compliment');
+}

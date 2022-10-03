@@ -1,0 +1,179 @@
+
+.topSection {
+    background: url("../public/images/home/header/header-background.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.homePage {
+    width: 100%;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.lineHeightNormal {
+    line-height: normal;
+}
+
+.firstSectionText {
+    text-shadow: 0px 1px 2px rgb(0 0 0 / 50%);
+    padding-bottom: 0.5rem;
+    position: relative;
+    max-width: 48rem;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-weight: 700;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 15%;
+        width: 70%;
+        border-bottom: 1px solid theme('colors.primary');
+    }
+}
+
+.slider {
+    overflow: hidden;
+    max-width: 100vw;
+    margin-top: 2.75rem;
+
+    .sliderTrack {
+        transition: all 0.2s ease-out 0s;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 256px);
+
+        p {
+            text-shadow:
+                0 1px 0px theme('colors.primary-compliment'),
+                1px 0 0px theme('colors.primary'),
+                1px 2px 1px theme('colors.primary-compliment'),
+                2px 1px 1px theme('colors.primary'),
+                2px 3px 2px theme('colors.primary-compliment'),
+        }
+    }
+}
+
+.headingTextShadow {
+    text-shadow:
+    0 1px theme('colors.primary-compliment'),
+    -1px 0 theme('colors.primary'),
+    -1px 2px theme('colors.primary-compliment'),
+    -2px 1px theme('colors.primary'),
+    -2px 3px theme('colors.primary-compliment'),
+    -3px 2px theme('colors.primary'),
+    -3px 4px theme('colors.primary-compliment'),
+    -4px 3px theme('colors.primary'),
+    -4px 5px theme('colors.primary-compliment'),
+    -5px 4px theme('colors.primary'),
+    -5px 6px theme('colors.primary-compliment'),
+    -6px 5px theme('colors.primary'),
+    -6px 7px theme('colors.primary-compliment'),
+    -7px 6px theme('colors.primary'),
+    -7px 8px theme('colors.primary-compliment'),
+    -8px 7px theme('colors.primary');
+}
+
+.cardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+    flex-wrap: wrap;
+
+    .projectCard {
+        background-color: theme('colors.dark');
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        &:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+            transform: scale(1.025);
+        }
+
+        span {
+            max-height: 300px;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+        
+        .projectCardTitle {
+            font-size: large;
+            padding: 1rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .projectCardDescription {
+            font-size: small;
+            padding: 1rem;
+            padding-top: 0.5rem;
+        }
+    }
+}
+
+.socialLinks {
+    a:hover {
+        
+        svg {
+            transition: all 0.2s ease-in-out;
+            color: theme('colors.primary');
+        }
+    }
+}
+
+
+@media only screen and (max-width: 1280px) {
+    .headingTextShadow {
+        text-shadow:
+            0 1px theme('colors.primary-compliment'),
+            -1px 0 theme('colors.primary'),
+            -1px 2px theme('colors.primary-compliment'),
+            -2px 1px theme('colors.primary'),
+            -2px 3px theme('colors.primary-compliment'),
+            -3px 2px theme('colors.primary'),
+            -3px 4px theme('colors.primary-compliment'),
+            -4px 3px theme('colors.primary'),
+            -4px 5px theme('colors.primary-compliment'),
+            -5px 4px theme('colors.primary'),
+    }
+
+    .cardContainer {
+        grid-template-columns: repeat(2, minmax(256px, 1fr));
+        grid-template-rows: repeat(2, minmax(256px, 1fr));
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .cardContainer {
+        grid-template-rows: repeat(auto-fit, minmax(256px, 1fr));
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 512px) {
+    .firstSectionText {
+        &::after {
+            width: 90%;
+            left: 5%;
+        }
+    }
+
+    .headingTextShadow {
+        text-shadow:
+            0 1px theme('colors.primary-compliment'),
+            -1px 0 theme('colors.primary'),
+            -1px 2px theme('colors.primary-compliment'),
+            -2px 1px theme('colors.primary'),
+            -2px 3px theme('colors.primary-compliment'),
+            -3px 2px theme('colors.primary'),
+            -3px 4px theme('colors.primary-compliment'),
+            -4px 3px theme('colors.primary'),
+    }
+}

@@ -1,17 +1,26 @@
+/** Classname for header UL element */
 .portfolioHeader {
     list-style-type: none;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0.25rem;
     li {
         font-size: 1.5em;
         cursor: pointer;
         transition: all 0.2s ease-in-out;
         cursor: pointer;
-        padding: 0.5rem 1.5rem;
         border-radius: 0.25rem;
         font-weight: bold;
         outline-offset: 4px;
         box-shadow: 2px 3px 0px 0px rgb(0 0 0 / 0.2);
+        align-items: center;
 
-        &[data-disabled]:not([data-disabled="true"]):hover, &[data-active="true"] {
+        &[data-disabled]:not([data-disabled="true"]):hover {
             color: black;
             background-color: theme('colors.primary');
         }
@@ -25,6 +34,66 @@
         &[data-disabled="true"] {
             color: gray;
             cursor: auto;
+        }
+
+        a {
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+    }
+}
+
+.name-header {
+    box-shadow: 4px 6px 0px 0px rgb(0 0 0 / 0.2);
+}
+
+@media only screen and (max-width: 1295px) {
+    .portfolioHeader {
+        li {
+            a {
+                padding: 0.2rem 0.5rem;
+            }
+            font-size: 1.4em;
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .portfolioHeader {
+        transition: all 0.5s ease-in-out;
+        width: 100%;
+        padding: 0;
+        li {
+            box-shadow: unset;
+            width: 100%;
+            border-radius: unset;
+
+            a {
+               padding: 0 1.25rem; 
+            }
+
+            &[data-disabled]:not([data-disabled="true"]):hover {
+                color: black;
+                background-color: theme('colors.primary');
+            }
+    
+            &[data-disabled]:not([data-disabled="true"]){
+                &[data-active]:not([data-active="false"]) {
+                    box-shadow: unset;
+                }
+            }
+
+            &[data-disabled]:not([data-disabled="true"]):not([data-active="true"]){
+                &:hover {
+                    box-shadow: unset;
+                }
+            }
+    
+            &[data-disabled="true"] {
+                color: gray;
+                cursor: auto;
+            }
         }
     }
 }
