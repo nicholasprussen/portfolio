@@ -112,7 +112,7 @@ const Header = () => {
     }
 
     return (
-        <header className={`md:sticky md:top-0 md:z-[999] ${styles.portfolioHeader}`} ref={headerContainer}>
+        <header className={` md:top-0 md:z-[999] ${styles.portfolioHeader}`} ref={headerContainer}>
             <div className="w-100 md:hidden px-5 py-3 flex justify-between items-center text-2xl name-header">
                 <h1 className={`font-bold whitespace-nowrap text-ellipsis`}>Nicholas Prussen</h1>
                 <FontAwesomeIcon icon={faHamburger} className="hover:text-primary cursor-pointer" onClick={() => {setHeaderCollapsed(!headerCollapsed)}}/>

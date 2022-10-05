@@ -1,8 +1,9 @@
 
 .topSection {
-    background: url("../public/images/home/header/header-background.jpg");
-    background-size: cover;
-    background-position: center;
+    // background: url("../public/images/home/header/header-background.jpg");
+    background-color: theme('colors.dark');
+    // background-size: cover;
+    // background-position: center;
     width: 100%;
     height: 100vh;
 }
@@ -41,11 +42,24 @@
     overflow: hidden;
     max-width: 100vw;
     margin-top: 2.75rem;
+    padding: 4rem 0;
 
     .sliderTrack {
         transition: all 0.2s ease-out 0s;
         display: grid;
         grid-template-columns: repeat(auto-fit, 256px);
+
+        .sliderCard {
+            box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.6);
+            transition: all 0.2s ease-in-out;
+            border: 5px solid theme('colors.dark-accent');
+            color: white;
+
+            &:hover {
+                box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.8);
+                transform: scale(1.025);
+            }
+        }
 
         p {
             text-shadow:
@@ -84,17 +98,20 @@
     flex-wrap: wrap;
 
     .projectCard {
-        background-color: theme('colors.dark');
+        background-color: theme('colors.dark-accent');
+        border: 1.5rem solid theme('colors.dark-accent');
         width: 100%;
         position: relative;
         display: flex;
         flex-direction: column;
         border-radius: 0.5rem;
         transition: all 0.2s ease-in-out;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.7);
 
         &:hover {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+            // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.8);
             transform: scale(1.025);
         }
 

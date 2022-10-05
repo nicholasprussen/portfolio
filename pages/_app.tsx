@@ -45,6 +45,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   useEffect(() => {
+    if (window)
+      setDimensions({width: window.innerWidth, height: window.innerHeight});
+
     /** Watch for window resize to report header height appropriately */
     window.addEventListener('resize', () => {
       setDimensions({width: window.innerWidth, height: window.innerHeight});

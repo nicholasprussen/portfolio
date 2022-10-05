@@ -1,7 +1,7 @@
 /** Classname for header UL element */
 .portfolioHeader {
     list-style-type: none;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    // box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -9,6 +9,13 @@
     flex-direction: column;
     justify-content: center;
     border-radius: 0.25rem;
+
+    ul {
+        height: 100%;
+        padding: 2rem 2rem;
+        width: 100%;
+    }
+
     li {
         font-size: 1.5em;
         cursor: pointer;
@@ -17,7 +24,8 @@
         border-radius: 0.25rem;
         font-weight: bold;
         outline-offset: 4px;
-        box-shadow: 2px 3px 0px 0px rgb(0 0 0 / 0.2);
+        // box-shadow: 2px 3px 0px 0px rgb(0 0 0 / 0.2);
+        box-shadow: -5px -5px 10px theme('colors.light' / 25%), 5px 5px 10px rgba(0, 0, 0, 0.6);
         align-items: center;
 
         &[data-disabled]:not([data-disabled="true"]):hover {
@@ -27,7 +35,8 @@
 
         &[data-disabled]:not([data-disabled="true"]){
             &:hover {
-                box-shadow: 5px 6px 0px 0px theme('colors.primary-compliment');
+                box-shadow: -5px -5px 10px theme('colors.light' / 20%), 10px 10px 10px rgba(0, 0, 0, 0.8);
+                // box-shadow: 5px 6px 0px 0px theme('colors.primary-compliment');
             }
         }
 
