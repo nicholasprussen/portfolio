@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import styles from "./Home.module.scss";
 import Image, { StaticImageData } from 'next/image';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { lazy, useContext, useEffect, useRef, useState } from 'react';
 import { HeaderContext, WindowContext } from './_app';
 import { faLinkedin, faInstagram, faTwitter, faGithub, IconDefinition } from "@fortawesome/free-brands-svg-icons";
 

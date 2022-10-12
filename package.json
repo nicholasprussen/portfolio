@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "gc": "node ./generate-component $1",
-    "gp": "node ./generate-page $1 $2"
+    "gp": "node ./generate-page $1 $2",
+    "gi": "node ./generate-image-imports"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
