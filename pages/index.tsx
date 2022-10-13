@@ -277,8 +277,8 @@ const Home: NextPage = () => {
   return (
     <div className={styles.homePage} data-theme={theme}>
       <section className={styles.topSection} style={{height: dimensions.height - headerCollapsedHeight}}>
-        <div className='flex flex-col h-full w-full justify-center pb-96 items-center'>
-          <h1 className={`text-2xl 2xs:text-[2em] xs:text-[3em] sm:text-[3.5em] md:text-[4em] lg:text-[5em] font-bold mt-20 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
+        <div className='flex flex-col h-full w-full justify-center items-center'>
+          <h1 className={`text-2xl 2xs:text-[2em] xs:text-[3em] sm:text-[3.5em] md:text-[4em] lg:text-[5em] font-bold ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
             {"Hi, I'm Nicholas"}
           </h1>
           <p className={`text-[1em] md:text-[1.4em] font-serif font-bold ${styles.firstSectionText}`}>
@@ -287,7 +287,7 @@ const Home: NextPage = () => {
           <div className={`flex gap-8 text-[1.8em] xs:text-[2em] lg:text-[2.5em] p-4 ${styles.socialLinks}`}>
             {mapSocialLinks()}
           </div>
-          <div className='mt-12'>
+          <div className='mb-16'>
             <Button buttonText='Nice to meet you! So, what do you know?' onClick={() => {scrollToSuperpowers()}} arrow={'down'} backgroundColor={'bg-dark'}></Button>
           </div>
         </div>
