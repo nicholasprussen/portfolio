@@ -2,8 +2,9 @@ import type { NextPage } from 'next'
 import styles from "./Home.module.scss";
 import Image, { StaticImageData } from 'next/image';
 import { lazy, useContext, useEffect, useRef, useState } from 'react';
-import { HeaderContext, WindowContext } from './_app';
+import { HeaderContext, ThemeContext, WindowContext } from './_app';
 import { faLinkedin, faInstagram, faTwitter, faGithub, IconDefinition } from "@fortawesome/free-brands-svg-icons";
+import { PortfolioTheme } from './_app';
 
 import headerBackground from "../public/images/home/header/header-background.jpg";
 
@@ -157,7 +158,8 @@ const Home: NextPage = () => {
   const [sliderEnd, setSliderEnd] = useState<number>(9999);
   const sliderRef = useRef<HTMLDivElement>(null);
   const { dimensions } = useContext(WindowContext);
-  const { headerHeight } = useContext(HeaderContext);
+  const { headerCollapsedHeight } = useContext(HeaderContext);
+  const { theme, updateTheme } = useContext(ThemeContext);
   const [previousWidth, setPreviousWidth] = useState(0);
   const superPowersRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -191,6 +193,7 @@ const Home: NextPage = () => {
   }, [sliderCount])
 
   useEffect(() => {
+    console.log(headerCollapsedHeight);
     //If we've reached the end, reset the offset
     if (sliderOffset <= sliderEnd) {
       setTimeout(() => {
@@ -272,11 +275,8 @@ const Home: NextPage = () => {
   }
 
   return (
-    <div className={styles.homePage}>
-      <div className='fixed bottom-8 right-8 z-50'>
-        <Button buttonText="" arrow='up' onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}} backgroundColor={'bg-dark'} neumorphism darkNeumorphism></Button>
-      </div>
-      <section className={styles.topSection} style={{height: dimensions.height - headerHeight}}>
+    <div className={styles.homePage} data-theme={theme}>
+      <section className={styles.topSection} style={{height: dimensions.height - headerCollapsedHeight}}>
         <div className='flex flex-col h-full w-full justify-center pb-96 items-center'>
           <h1 className={`text-2xl 2xs:text-[2em] xs:text-[3em] sm:text-[3.5em] md:text-[4em] lg:text-[5em] font-bold mt-20 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
             {"Hi, I'm Nicholas"}
@@ -288,7 +288,7 @@ const Home: NextPage = () => {
             {mapSocialLinks()}
           </div>
           <div className='mt-12'>
-            <Button buttonText='Nice to meet you! So, what do you know?' onClick={() => {scrollToSuperpowers()}} arrow={'down'} backgroundColor={'bg-dark'} neumorphism darkNeumorphism></Button>
+            <Button buttonText='Nice to meet you! So, what do you know?' onClick={() => {scrollToSuperpowers()}} arrow={'down'} backgroundColor={'bg-dark'}></Button>
           </div>
         </div>
       </section>
@@ -304,7 +304,7 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className='w-full flex justify-center items-center lg:mb-20 mt-10'>
-          <Button buttonText="Those are cool and all, but where's the experience?" onClick={() => {timelineRef.current?.scrollIntoView({behavior: 'smooth'})}} arrow={'down'} backgroundColor={'bg-dark-accent'} neumorphism></Button>
+          <Button buttonText="Those are cool and all, but where's the experience?" onClick={() => {timelineRef.current?.scrollIntoView({behavior: 'smooth'})}} arrow={'down'} backgroundColor={'bg-dark-accent'}></Button>
         </div>
       </section>
       <section className='w-full h-screen py-14 lg:py-28 px-4 relative flex flex-col justify-center' ref={timelineRef}>
@@ -328,10 +328,10 @@ const Home: NextPage = () => {
           </codersrank-activity>
         </div>
         <div className='w-full flex justify-center items-center lg:mb-8 mt-12'>
-          <Button buttonText='Sweet! Where can I find some of your projects?' onClick={() => {projectsRef.current?.scrollIntoView({behavior: 'smooth'})}} arrow={'down'} backgroundColor={'bg-dark'} neumorphism darkNeumorphism></Button>
+          <Button buttonText='Sweet! Where can I find some of your projects?' onClick={() => {projectsRef.current?.scrollIntoView({behavior: 'smooth'})}} arrow={'down'} backgroundColor={'bg-dark'}></Button>
         </div>
       </section>
-      <section className='w-full h-screen py-14 lg:py-28 px-4 relative flex flex-col gap-8 justify-center bg-dark-accent' ref={projectsRef}>
+      <section className='w-full h-fit lg:h-screen py-14 lg:py-28 px-4 relative flex flex-col gap-8 justify-center bg-dark-accent' ref={projectsRef}>
         <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center lg:mb-24 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
           My Projects
         </h2>
@@ -339,7 +339,7 @@ const Home: NextPage = () => {
           {mapProjectCards()}
         </div>
         <div className='w-full flex justify-center items-center lg:mb-8 mt-8 sm:mt-16'>
-          <Button buttonText='Take me back chief!' onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}} arrow={'up'} backgroundColor={'bg-dark-accent'} neumorphism></Button>
+          <Button buttonText='Take me back chief!' onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}} arrow={'up'} backgroundColor={'bg-dark-accent'}></Button>
         </div>
       </section>
     </div>

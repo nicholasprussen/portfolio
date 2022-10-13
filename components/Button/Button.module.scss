@@ -1,37 +1,32 @@
+div.buttonContainer[data-theme="neumorphism"] {
+    .button {
+        border-radius: 9999px;
+        box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.7);
+        transition: all 0.2s ease-in-out;
+        color: white;
+        background-color: transparent;
+
+        &:hover {
+            box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 30px -10px rgba(0, 0, 0, 0.8);
+            color: theme('colors.primary');
+            transform: scale(1.025);
+        }
+    }
+}
+
+.buttonContainer {
+    width: fit-content;
+    height: fit-content;
+}
+
 .button {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: all 0.1s ease-in-out;
+    background-color: theme('colors.primary');
+    border-radius: 2rem;
 
     &:hover {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
-        transform: scale(1.025);
-    }
-}
-
-.buttonNeumorphism {
-    border-radius: 9999px;
-    box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.7);
-    transition: all 0.2s ease-in-out;
-    border: 5px solid theme('colors.dark-accent');
-    color: white;
-
-    &:hover {
-        box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 30px -10px rgba(0, 0, 0, 0.8);
-        color: theme('colors.primary');
-        transform: scale(1.025);
-    }
-}
-
-.darkButtonNeumorphism {
-    border-radius: 9999px;
-    box-shadow: -5px -5px 10px theme('colors.light' / 25%), 5px 5px 10px rgba(0, 0, 0, 0.6);
-    transition: all 0.2s ease-in-out;
-    border: 5px solid theme('colors.dark');
-    color: white;
-
-    &:hover {
-        box-shadow: -5px -5px 10px theme('colors.light' / 30%), 10px 10px 10px rgba(0, 0, 0, 0.8);
-        color: theme('colors.primary');
         transform: scale(1.025);
     }
 }

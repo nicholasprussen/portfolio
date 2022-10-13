@@ -5,7 +5,7 @@ import styles from "./Header.module.scss";
 import { faHouse, IconDefinition, faAddressCard, faCameraRetro, faEnvelope, faDiagramProject, faFileWord, faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import AnimateHeight, { Height } from "react-animate-height";
-import { HeaderContext, WindowContext } from "../../pages/_app";
+import { HeaderContext, ThemeContext, WindowContext } from "../../pages/_app";
 
 export interface IHeaderLinks {
     /** Link that the anchor tag will use */
@@ -65,7 +65,8 @@ const Header = () => {
     const [headerCollapsed, setHeaderCollapsed] = useState(true);
     const [headerHeight, setHeaderHeight] = useState<Height>(0);
     const headerContainer = useRef<HTMLDivElement>(null);
-    const { updateHeaderHeight } = useContext(HeaderContext);
+    const { updateHeaderHeight, updateHeaderCollapsedHeight } = useContext(HeaderContext);
+    const { theme } = useContext(ThemeContext);
     const { dimensions } = useContext(WindowContext);
     const router = useRouter();
 
@@ -81,6 +82,8 @@ const Header = () => {
 
     /** Update header height after react-animate finishes */
     const headerHeightChanged = (newHeight: Height) => {
+        if (headerCollapsed)
+            updateHeaderCollapsedHeight(headerContainer.current?.clientHeight || 0);
         updateHeaderHeight(headerContainer.current?.clientHeight || 0);
     }
 
@@ -112,8 +115,8 @@ const Header = () => {
     }
 
     return (
-        <header className={` md:top-0 md:z-[999] ${styles.portfolioHeader}`} ref={headerContainer}>
-            <div className="w-100 md:hidden px-5 py-3 flex justify-between items-center text-2xl name-header">
+        <header className={` md:top-0 md:z-[999] ${styles.portfolioHeader}`} ref={headerContainer} data-theme={theme}>
+            <div className="w-100 md:hidden px-5 py-3 flex justify-between items-center text-2xl">
                 <h1 className={`font-bold whitespace-nowrap text-ellipsis`}>Nicholas Prussen</h1>
                 <FontAwesomeIcon icon={faHamburger} className="hover:text-primary cursor-pointer" onClick={() => {setHeaderCollapsed(!headerCollapsed)}}/>
             </div>
@@ -126,7 +129,7 @@ const Header = () => {
                         {mapHeaderLinks(HeaderLinks)}
                     </ul>
             </AnimateHeight>
-            <ul className="hidden md:flex justify-center flex-col md:flex-row py-2 md:py-4 w-full md:w-auto gap-2 md:gap-5 bg-dark-accent md:bg-dark overflow-hidden">
+            <ul className="hidden md:flex justify-center flex-col md:flex-row py-2 md:p-8 w-full md:w-auto gap-2 md:gap-5 bg-dark-accent md:bg-dark overflow-hidden">
                 {mapHeaderLinks(HeaderLinks)}
             </ul>
         </header>

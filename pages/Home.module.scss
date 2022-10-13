@@ -1,9 +1,108 @@
+div.homePage[data-theme="neumorphism"] {
+    .topSection {
+        background-color: theme('colors.dark');
+    }
+    .firstSectionText {
+        &::after {
+            border-bottom: 1px solid theme('colors.primary');
+        }
+    }
+    .slider {
+        .sliderCard {
+            border: 5px solid theme('colors.dark-accent');
+            box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.6);
+            color: white;
+
+            &:hover {
+                box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .sliderTrack {
+            p {
+                text-shadow:
+                    0 1px 0px theme('colors.primary-compliment'),
+                    1px 0 0px theme('colors.primary'),
+                    1px 2px 1px theme('colors.primary-compliment'),
+                    2px 1px 1px theme('colors.primary'),
+                    2px 3px 2px theme('colors.primary-compliment'),
+            }
+        }
+    }
+    .headingTextShadow {
+        text-shadow:
+        0 1px theme('colors.primary-compliment'),
+        -1px 0 theme('colors.primary'),
+        -1px 2px theme('colors.primary-compliment'),
+        -2px 1px theme('colors.primary'),
+        -2px 3px theme('colors.primary-compliment'),
+        -3px 2px theme('colors.primary'),
+        -3px 4px theme('colors.primary-compliment'),
+        -4px 3px theme('colors.primary'),
+        -4px 5px theme('colors.primary-compliment'),
+        -5px 4px theme('colors.primary'),
+        -5px 6px theme('colors.primary-compliment'),
+        -6px 5px theme('colors.primary'),
+        -6px 7px theme('colors.primary-compliment'),
+        -7px 6px theme('colors.primary'),
+        -7px 8px theme('colors.primary-compliment'),
+        -8px 7px theme('colors.primary');
+    }
+
+    .cardContainer {
+        .projectCard {
+            background-color: theme('colors.dark-accent');
+            border: 1.5rem solid theme('colors.dark-accent');
+            box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.7);
+
+            &:hover {
+                box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.8);
+            }
+        }
+    }
+
+    .socialLinks {
+        a:hover {
+            svg {
+                color: theme('colors.primary');
+            }
+        }
+    }
+}
+
+div.homePage[data-theme="default"] {
+    .topSection {
+        background-color: theme('colors.dark');
+    }
+    .firstSectionText {
+        &::after {
+            border-bottom: 1px solid theme('colors.primary');
+        }
+    }
+    .slider {
+        .sliderCard {
+            background-color: theme('colors.dark');
+            color: white;
+        }
+    }
+
+    .cardContainer {
+        .projectCard {
+            background-color: theme('colors.dark');
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        }
+    }
+
+    .socialLinks {
+        a:hover {
+            svg {
+                color: theme('colors.primary');
+            }
+        }
+    }
+}
 
 .topSection {
-    // background: url("../public/images/home/header/header-background.jpg");
-    background-color: theme('colors.dark');
-    // background-size: cover;
-    // background-position: center;
     width: 100%;
     height: 100vh;
 }
@@ -34,7 +133,6 @@
         top: 100%;
         left: 15%;
         width: 70%;
-        border-bottom: 1px solid theme('colors.primary');
     }
 }
 
@@ -50,46 +148,13 @@
         grid-template-columns: repeat(auto-fit, 256px);
 
         .sliderCard {
-            box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.6);
             transition: all 0.2s ease-in-out;
-            border: 5px solid theme('colors.dark-accent');
-            color: white;
 
             &:hover {
-                box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.8);
                 transform: scale(1.025);
             }
         }
-
-        p {
-            text-shadow:
-                0 1px 0px theme('colors.primary-compliment'),
-                1px 0 0px theme('colors.primary'),
-                1px 2px 1px theme('colors.primary-compliment'),
-                2px 1px 1px theme('colors.primary'),
-                2px 3px 2px theme('colors.primary-compliment'),
-        }
     }
-}
-
-.headingTextShadow {
-    text-shadow:
-    0 1px theme('colors.primary-compliment'),
-    -1px 0 theme('colors.primary'),
-    -1px 2px theme('colors.primary-compliment'),
-    -2px 1px theme('colors.primary'),
-    -2px 3px theme('colors.primary-compliment'),
-    -3px 2px theme('colors.primary'),
-    -3px 4px theme('colors.primary-compliment'),
-    -4px 3px theme('colors.primary'),
-    -4px 5px theme('colors.primary-compliment'),
-    -5px 4px theme('colors.primary'),
-    -5px 6px theme('colors.primary-compliment'),
-    -6px 5px theme('colors.primary'),
-    -6px 7px theme('colors.primary-compliment'),
-    -7px 6px theme('colors.primary'),
-    -7px 8px theme('colors.primary-compliment'),
-    -8px 7px theme('colors.primary');
 }
 
 .cardContainer {
@@ -98,8 +163,6 @@
     flex-wrap: wrap;
 
     .projectCard {
-        background-color: theme('colors.dark-accent');
-        border: 1.5rem solid theme('colors.dark-accent');
         width: 100%;
         position: relative;
         display: flex;
@@ -107,11 +170,9 @@
         border-radius: 0.5rem;
         transition: all 0.2s ease-in-out;
         // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.7);
 
         &:hover {
             // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
-            box-shadow: -12px -10px 12px -10px theme('colors.light' / 45%), 16px 12px 24px -10px rgba(0, 0, 0, 0.8);
             transform: scale(1.025);
         }
 
@@ -140,25 +201,26 @@
         
         svg {
             transition: all 0.2s ease-in-out;
-            color: theme('colors.primary');
         }
     }
 }
 
 
 @media only screen and (max-width: 1280px) {
-    .headingTextShadow {
-        text-shadow:
-            0 1px theme('colors.primary-compliment'),
-            -1px 0 theme('colors.primary'),
-            -1px 2px theme('colors.primary-compliment'),
-            -2px 1px theme('colors.primary'),
-            -2px 3px theme('colors.primary-compliment'),
-            -3px 2px theme('colors.primary'),
-            -3px 4px theme('colors.primary-compliment'),
-            -4px 3px theme('colors.primary'),
-            -4px 5px theme('colors.primary-compliment'),
-            -5px 4px theme('colors.primary'),
+    div.homePage[data-theme="neumorphism"] {
+        .headingTextShadow {
+            text-shadow:
+                0 1px theme('colors.primary-compliment'),
+                -1px 0 theme('colors.primary'),
+                -1px 2px theme('colors.primary-compliment'),
+                -2px 1px theme('colors.primary'),
+                -2px 3px theme('colors.primary-compliment'),
+                -3px 2px theme('colors.primary'),
+                -3px 4px theme('colors.primary-compliment'),
+                -4px 3px theme('colors.primary'),
+                -4px 5px theme('colors.primary-compliment'),
+                -5px 4px theme('colors.primary'),
+        }
     }
 
     .cardContainer {
@@ -175,22 +237,24 @@
 }
 
 @media only screen and (max-width: 512px) {
+    div.homePage[data-theme="neumorphism"] {
+        .headingTextShadow {
+            text-shadow:
+                0 1px theme('colors.primary-compliment'),
+                -1px 0 theme('colors.primary'),
+                -1px 2px theme('colors.primary-compliment'),
+                -2px 1px theme('colors.primary'),
+                -2px 3px theme('colors.primary-compliment'),
+                -3px 2px theme('colors.primary'),
+                -3px 4px theme('colors.primary-compliment'),
+                -4px 3px theme('colors.primary'),
+        }
+    }
+
     .firstSectionText {
         &::after {
             width: 90%;
             left: 5%;
         }
-    }
-
-    .headingTextShadow {
-        text-shadow:
-            0 1px theme('colors.primary-compliment'),
-            -1px 0 theme('colors.primary'),
-            -1px 2px theme('colors.primary-compliment'),
-            -2px 1px theme('colors.primary'),
-            -2px 3px theme('colors.primary-compliment'),
-            -3px 2px theme('colors.primary'),
-            -3px 4px theme('colors.primary-compliment'),
-            -4px 3px theme('colors.primary'),
     }
 }
