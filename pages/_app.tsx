@@ -94,7 +94,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div className='min-h-screen w-full grid grid-rows-[auto_1fr_auto]'>
         <div className='fixed bottom-8 right-8 z-50 flex flex-col gap-4 justify-end'>
             <Button buttonText="" arrow='up' containerClassName='ml-auto' onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}}></Button>
-            <Button buttonText="Change Theme" onClick={() => {updateTheme(theme === 'default' ? 'neumorphism' : 'default')}}></Button>
+            {/* <Button buttonText="Change Theme" onClick={() => {updateTheme(theme === 'default' ? 'neumorphism' : 'default')}}></Button> */}
         </div>
         <Header />
         <Component {...pageProps} />

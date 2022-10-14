@@ -14,7 +14,7 @@ const Photography: NextPage = () => {
 
     return (
         <main className='bg-dark-accent'>
-            <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center lg:mb-24 lg:mt-20 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
+            <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center lg:mb-24 mt-4 lg:mt-20 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
                 My Photographs
             </h2>
             <section className={styles.portfolio}>

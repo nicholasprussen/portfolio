@@ -158,7 +158,7 @@ const Home: NextPage = () => {
   const [sliderEnd, setSliderEnd] = useState<number>(9999);
   const sliderRef = useRef<HTMLDivElement>(null);
   const { dimensions } = useContext(WindowContext);
-  const { headerCollapsedHeight } = useContext(HeaderContext);
+  const { headerCollapsedHeight, headerHeight } = useContext(HeaderContext);
   const { theme, updateTheme } = useContext(ThemeContext);
   const [previousWidth, setPreviousWidth] = useState(0);
   const superPowersRef = useRef<HTMLDivElement>(null);
@@ -193,7 +193,6 @@ const Home: NextPage = () => {
   }, [sliderCount])
 
   useEffect(() => {
-    console.log(headerCollapsedHeight);
     //If we've reached the end, reset the offset
     if (sliderOffset <= sliderEnd) {
       setTimeout(() => {
@@ -218,6 +217,9 @@ const Home: NextPage = () => {
   useEffect(() => {
     setNewSliderEnd();
   }, [dimensions])
+
+  useEffect(() => {
+  }, [headerCollapsedHeight, headerHeight])
 
   const setNewSliderEnd = () => {
     if (sliderRef.current) {
@@ -269,32 +271,39 @@ const Home: NextPage = () => {
   }
 
   const scrollToSuperpowers = () => {
-    console.log("scrolling")
     if (superPowersRef.current)
       superPowersRef.current.scrollIntoView({behavior: 'smooth'});
   }
 
+  const getTopSectionHeight = () => {
+    if (dimensions.width < 1024)
+        return dimensions.height - headerCollapsedHeight;
+    return dimensions.height - headerHeight;
+  }
+
   return (
     <div className={styles.homePage} data-theme={theme}>
-      <section className={styles.topSection} style={{height: dimensions.height - headerCollapsedHeight}}>
-        <div className='flex flex-col h-full w-full justify-center items-center'>
-          <h1 className={`text-2xl 2xs:text-[2em] xs:text-[3em] sm:text-[3.5em] md:text-[4em] lg:text-[5em] font-bold ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
-            {"Hi, I'm Nicholas"}
-          </h1>
-          <p className={`text-[1em] md:text-[1.4em] font-serif font-bold ${styles.firstSectionText}`}>
-            <span className='text-primary'>Boise</span> based <span className='text-primary'>Full Stack Developer</span>, with a <span className='text-primary'>Bachelors of Science</span> in <span className='text-primary'>Computer Science</span>. Currently working at <span className='text-primary'>Micron Technology</span>.
-          </p>
-          <div className={`flex gap-8 text-[1.8em] xs:text-[2em] lg:text-[2.5em] p-4 ${styles.socialLinks}`}>
-            {mapSocialLinks()}
-          </div>
-          <div className='mb-16'>
-            <Button buttonText='Nice to meet you! So, what do you know?' onClick={() => {scrollToSuperpowers()}} arrow={'down'} backgroundColor={'bg-dark'}></Button>
-          </div>
+      <section className={styles.topSection} style={{height: getTopSectionHeight()}}>
+        <div className='flex flex-col h-full w-full justify-center gap-[20%] items-center'>
+            <div className='flex flex-col justify-center items-center'>
+                <h1 className={`text-2xl 2xs:text-[2em] xs:text-[3em] sm:text-[3.5em] md:text-[4em] lg:text-[5em] font-bold ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
+                    {"Hi, I'm Nicholas"}
+                </h1>
+                <p className={`text-[1em] md:text-[1.4em] font-serif font-bold ${styles.firstSectionText}`}>
+                    <span className='text-primary'>Boise</span> based <span className='text-primary'>Full Stack Developer</span>, with a <span className='text-primary'>Bachelors of Science</span> in <span className='text-primary'>Computer Science</span>. Currently working at <span className='text-primary'>Micron Technology</span>.
+                </p>
+                <div className={`flex gap-8 text-[1.8em] xs:text-[2em] lg:text-[2.5em] p-4 ${styles.socialLinks}`}>
+                    {mapSocialLinks()}
+                </div>
+            </div>
+            <div className=''>
+                <Button buttonText='Nice to meet you! So, what do you know?' onClick={() => {scrollToSuperpowers()}} arrow={'down'} backgroundColor={'bg-dark'}></Button>
+            </div>
         </div>
       </section>
-      <section className='w-full h-screen py-10 lg:py-20 bg-dark-accent' ref={superPowersRef}>
-        <div className='w-full container mx-auto lg:mb-20 lg:mt-12'>
-          <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center mb-10 md:mb-24 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
+      <section className='w-full h-screen bg-dark-accent flex flex-col gap-[20%] md:py-24 justify-center items-center' ref={superPowersRef}>
+        <div className='w-full container mx-auto flex gap-4 md:gap-24 flex-col'>
+          <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
             My Superpowers
           </h2>
           <div className={`${styles.slider}`} ref={sliderRef}>
@@ -303,42 +312,46 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className='w-full flex justify-center items-center lg:mb-20 mt-10'>
+        <div className='w-full flex justify-center items-center mb-24'>
           <Button buttonText="Those are cool and all, but where's the experience?" onClick={() => {timelineRef.current?.scrollIntoView({behavior: 'smooth'})}} arrow={'down'} backgroundColor={'bg-dark-accent'}></Button>
         </div>
       </section>
-      <section className='w-full h-screen py-14 lg:py-28 px-4 relative flex flex-col justify-center' ref={timelineRef}>
-        <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center lg:mb-24 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
-          My Timeline
-        </h2>
-        <div className='w-full sm:container mx-auto flex flex-wrap lg:flex-nowrap gap-8'>
-          <codersrank-skills-chart  username="nicholasprussen"
-                                    svg-width={768}
-                                    svg-height={80}
-                                    labels={dimensions.width > 512}
-                                    branding={false}
+      <section className='w-full h-screen relative flex flex-col justify-center gap-[8%] md:gap-[20%] px-4' ref={timelineRef}>
+        <div className='relative flex flex-col justify-center gap-16 md:gap-24'>
+            <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
+            My Timeline
+            </h2>
+            <div className='w-full sm:container mx-auto flex flex-wrap lg:flex-nowrap gap-8'>
+            <codersrank-skills-chart  username="nicholasprussen"
+                                        svg-width={768}
+                                        svg-height={80}
+                                        labels={dimensions.width > 512}
+                                        branding={false}
+                                        tooltip={true}
+                                        legend={true}>
+            </codersrank-skills-chart>
+            <codersrank-activity  username="nicholasprussen"
+                                    labels={true}
+                                    legend={true}
                                     tooltip={true}
-                                    legend={true}>
-          </codersrank-skills-chart>
-          <codersrank-activity  username="nicholasprussen"
-                                labels={true}
-                                legend={true}
-                                tooltip={true}
-                                branding={false}>
-          </codersrank-activity>
+                                    branding={false}>
+            </codersrank-activity>
+            </div>
         </div>
-        <div className='w-full flex justify-center items-center lg:mb-8 mt-12'>
+        <div className='w-full flex justify-center items-center'>
           <Button buttonText='Sweet! Where can I find some of your projects?' onClick={() => {projectsRef.current?.scrollIntoView({behavior: 'smooth'})}} arrow={'down'} backgroundColor={'bg-dark'}></Button>
         </div>
       </section>
-      <section className='w-full h-fit lg:h-screen py-14 lg:py-28 px-4 relative flex flex-col gap-8 justify-center bg-dark-accent' ref={projectsRef}>
-        <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center lg:mb-24 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
-          My Projects
-        </h2>
-        <div className={`w-full mx-auto gap-16 sm:container ${styles.cardContainer}`}>
-          {mapProjectCards()}
+      <section className='w-full h-fit lg:h-screen relative flex flex-col justify-center bg-dark-accent gap-16 md:gap-[5%] px-4 py-8' ref={projectsRef}>
+        <div className='relative flex flex-col justify-center gap-8 md:gap-24'>
+            <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
+            My Projects
+            </h2>
+            <div className={`w-full mx-auto gap-16 sm:container ${styles.cardContainer}`}>
+            {mapProjectCards()}
+            </div>
         </div>
-        <div className='w-full flex justify-center items-center lg:mb-8 mt-8 sm:mt-16'>
+        <div className='w-full flex justify-center items-center'>
           <Button buttonText='Take me back chief!' onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}} arrow={'up'} backgroundColor={'bg-dark-accent'}></Button>
         </div>
       </section>

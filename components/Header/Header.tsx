@@ -29,7 +29,7 @@ export const HeaderLinks: IHeaderLinks[] = [
     {
         href: '/about',
         linkText: 'About',
-        disabled: false,
+        disabled: true,
         fontAwesomeIcon: faAddressCard
     },
     {
@@ -41,7 +41,7 @@ export const HeaderLinks: IHeaderLinks[] = [
     {
         href: '/contact',
         linkText: 'Contact',
-        disabled: false,
+        disabled: true,
         fontAwesomeIcon: faEnvelope
     },
     {
@@ -79,6 +79,10 @@ const Header = () => {
         updateHeaderHeight(headerContainer.current?.clientHeight || 0);
     }, [dimensions])
 
+    useEffect(() => {
+        updateHeaderCollapsedHeight(headerContainer.current?.clientHeight || 0);
+    }, [])
+
 
     /** Update header height after react-animate finishes */
     const headerHeightChanged = (newHeight: Height) => {
@@ -99,12 +103,12 @@ const Header = () => {
                     {
                         !headerLink.disabled ? 
                         <Link href={headerLink.href}>
-                            <a className="w-full flex md:gap-2 lg:gap-4 items-center">
+                            <a className="w-full flex md:gap-2 lg:gap-4 items-center truncate">
                                 <FontAwesomeIcon icon={headerLink.fontAwesomeIcon} fixedWidth />
                                 {headerLink.linkText}
                             </a>
                         </Link> :
-                        <a className="flex md:gap-2 lg:gap-4 items-center">
+                        <a className="flex md:gap-2 lg:gap-4 items-center truncate">
                             <FontAwesomeIcon icon={headerLink.fontAwesomeIcon} fixedWidth />
                             {headerLink.linkText}
                         </a>
