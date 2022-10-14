@@ -121,7 +121,11 @@ const Header = () => {
     return (
         <header className={`${styles.portfolioHeader}`} ref={headerContainer} data-theme={theme}>
             <div className="w-100 md:hidden px-5 py-3 flex justify-between items-center text-2xl">
-                <h1 className={`font-bold whitespace-nowrap text-ellipsis`}>Nicholas Prussen</h1>
+                <Link href={"/"}>
+                    <a>
+                        <h1 className={`font-bold whitespace-nowrap text-ellipsis`}>Nicholas Prussen</h1>
+                    </a>
+                </Link>
                 <FontAwesomeIcon icon={faHamburger} className="hover:text-primary cursor-pointer" onClick={() => {setHeaderCollapsed(!headerCollapsed)}}/>
             </div>
             <AnimateHeight
