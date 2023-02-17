@@ -5,7 +5,9 @@ import styles from "./Header.module.scss";
 import { faHouse, IconDefinition, faAddressCard, faCameraRetro, faEnvelope, faDiagramProject, faFileWord, faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import AnimateHeight, { Height } from "react-animate-height";
-import { HeaderContext, ThemeContext, WindowContext } from "../../pages/_app";
+import { HeaderContext, Page, PageDefinitions, ThemeContext, WindowContext } from "../../pages/_app";
+import Button from "../Button/Button";
+import { PageContext } from "../../pages/_app";
 
 export interface IHeaderLinks {
     /** Link that the anchor tag will use */
@@ -26,36 +28,36 @@ export const HeaderLinks: IHeaderLinks[] = [
         disabled: false,
         fontAwesomeIcon: faHouse
     },
-    {
-        href: '/about',
-        linkText: 'About',
-        disabled: true,
-        fontAwesomeIcon: faAddressCard
-    },
+    // {
+    //     href: '/about',
+    //     linkText: 'About',
+    //     disabled: true,
+    //     fontAwesomeIcon: faAddressCard
+    // },
     {
         href: '/photography',
         linkText: 'Photography',
         disabled: false,
         fontAwesomeIcon: faCameraRetro
     },
-    {
-        href: '/contact',
-        linkText: 'Contact',
-        disabled: true,
-        fontAwesomeIcon: faEnvelope
-    },
-    {
-        href: '/projects',
-        linkText: 'Projects',
-        disabled: true,
-        fontAwesomeIcon: faDiagramProject
-    },
-    {
-        href: '/visual-resume',
-        linkText: 'Visual Resume',
-        disabled: true,
-        fontAwesomeIcon: faFileWord
-    },
+    // {
+    //     href: '/contact',
+    //     linkText: 'Contact',
+    //     disabled: true,
+    //     fontAwesomeIcon: faEnvelope
+    // },
+    // {
+    //     href: '/projects',
+    //     linkText: 'Projects',
+    //     disabled: true,
+    //     fontAwesomeIcon: faDiagramProject
+    // },
+    // {
+    //     href: '/visual-resume',
+    //     linkText: 'Visual Resume',
+    //     disabled: true,
+    //     fontAwesomeIcon: faFileWord
+    // },
 ]
 
 /** Site-wide Header Component */
@@ -63,16 +65,17 @@ const Header = () => {
 
     /** State */
     const [headerCollapsed, setHeaderCollapsed] = useState(true);
-    const [headerHeight, setHeaderHeight] = useState<Height>(0);
+    const [headerHeight, setHeaderHeight] = useState<number>(0);
     const headerContainer = useRef<HTMLDivElement>(null);
     const { updateHeaderHeight, updateHeaderCollapsedHeight } = useContext(HeaderContext);
     const { theme } = useContext(ThemeContext);
     const { dimensions } = useContext(WindowContext);
     const router = useRouter();
+    const { activePage, updatePage } = useContext(PageContext);
 
     /** UseEffects */
     useEffect(() => {
-        setHeaderHeight(headerCollapsed ? 0 : 'auto');
+        setHeaderHeight(headerCollapsed ? 0 : (dimensions.height - headerHeight));
     }, [headerCollapsed])
 
     useEffect(() => {
@@ -99,17 +102,17 @@ const Header = () => {
         let index = 0;
         return headerLinks.map((headerLink) => {
             return (
-                <li data-disabled={headerLink.disabled} key={++index} data-active={router.pathname === headerLink.href}>
+                <li data-disabled={headerLink.disabled} key={++index} data-active={router.pathname === headerLink.href} onClick={() => {setHeaderCollapsed(true)}}>
                     {
                         !headerLink.disabled ? 
                         <Link href={headerLink.href}>
                             <a className="w-full flex md:gap-2 lg:gap-4 items-center truncate">
-                                <FontAwesomeIcon icon={headerLink.fontAwesomeIcon} fixedWidth />
+                                {/* <FontAwesomeIcon icon={headerLink.fontAwesomeIcon} fixedWidth /> */}
                                 {headerLink.linkText}
                             </a>
                         </Link> :
                         <a className="flex md:gap-2 lg:gap-4 items-center truncate">
-                            <FontAwesomeIcon icon={headerLink.fontAwesomeIcon} fixedWidth />
+                            {/* <FontAwesomeIcon icon={headerLink.fontAwesomeIcon} fixedWidth /> */}
                             {headerLink.linkText}
                         </a>
                     }
@@ -123,21 +126,22 @@ const Header = () => {
             <div className="w-100 md:hidden px-5 py-3 flex justify-between items-center text-2xl">
                 <Link href={"/"}>
                     <a>
-                        <h1 className={`font-bold whitespace-nowrap text-ellipsis`}>Nicholas Prussen</h1>
+                        {/* <h1 className={`font-bold whitespace-nowrap text-ellipsis`}>Nicholas Prussen</h1> */}
+                        <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
                     </a>
                 </Link>
                 <FontAwesomeIcon icon={faHamburger} className="hover:text-primary cursor-pointer" onClick={() => {setHeaderCollapsed(!headerCollapsed)}}/>
             </div>
             <AnimateHeight
-                duration={500}
+                duration={750}
                 height={headerHeight}
                 className="md:hidden"
                 onHeightAnimationEnd={(newHeight) => headerHeightChanged(newHeight)}>
-                    <ul className="flex flex-col md:flex-row md:py-4 w-full md:w-auto md:gap-5 bg-dark-accent lg:bg-dark overflow-hidden">
+                    <ul className="flex flex-col md:flex-row md:py-4 w-full md:w-auto md:gap-5 lg:bg-dark overflow-hidden">
                         {mapHeaderLinks(HeaderLinks)}
                     </ul>
             </AnimateHeight>
-            <ul className="hidden md:flex justify-center flex-col md:flex-row py-2 md:p-8 w-full md:w-auto gap-2 md:gap-5 bg-dark-accent md:bg-dark overflow-hidden">
+            <ul className="hidden md:flex justify-center flex-col md:flex-row py-2 md:p-8 w-full md:w-auto gap-2 md:gap-5 md:bg-dark overflow-hidden">
                 {mapHeaderLinks(HeaderLinks)}
             </ul>
         </header>

@@ -13,7 +13,7 @@ interface IHeaderContext {
 
 interface IWindowDimensions {
   width: number,
-  height: number
+  height: number,
 }
 
 interface IWindowContext {
@@ -21,6 +21,18 @@ interface IWindowContext {
   updateDimensions(dimensions: IWindowDimensions): any
 }
 
+interface IPageContext {
+    activePage: Page,
+    updatePage(pageName: Page): void
+}
+
+export type Page = 'Intro' | 'About Me' | 'Superpowers' | 'Projects';
+export const PageDefinitions: {[key in Page]: number} = {
+    Intro: 0,
+    'About Me': 1,
+    Superpowers: 2,
+    Projects: 3
+} 
 export type PortfolioTheme = 'professional' | 'default' | 'wacky' | 'neumorphism';
 
 interface IThemeContext {
@@ -36,7 +48,7 @@ const headerContext: IHeaderContext = {
 }
 
 const windowContext: IWindowContext = {
-  dimensions: {width: 0, height: 0},
+  dimensions: {width: 9999, height: 9999},
   updateDimensions: (dimensions: IWindowDimensions) => {}
 }
 
@@ -45,15 +57,22 @@ const themeContext: IThemeContext = {
     updateTheme: (theme: PortfolioTheme) => {}
 }
 
+const pageContext: IPageContext = {
+    activePage: 'Intro',
+    updatePage: (pageName: Page) => {}
+}
+
 export const HeaderContext = createContext(headerContext);
 export const WindowContext = createContext(windowContext);
 export const ThemeContext = createContext(themeContext);
+export const PageContext = createContext(pageContext);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [headerHeight, setHeaderHeight] = useState<number>(headerContext.headerHeight);
   const [headerCollapsedHeight, setHeaderCollapsedHeight] = useState<number>(headerContext.headerCollapsedHeight);
   const [dimensions, setDimensions] = useState<IWindowDimensions>(windowContext.dimensions);
   const [theme, setTheme] = useState<PortfolioTheme>(themeContext.theme);
+  const [activePage, setActivePage] = useState<Page>(pageContext.activePage);
 
   const updateHeaderHeight = (height: number) => {
     setHeaderHeight(height);
@@ -72,8 +91,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   useEffect(() => {
-    if (window)
-      setDimensions({width: window.innerWidth, height: window.innerHeight});
+    if (window) {
+        setDimensions({width: window.innerWidth, height: window.innerHeight});
+    }
 
     /** Watch for window resize to report header height appropriately */
     window.addEventListener('resize', () => {
@@ -86,20 +106,30 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [])
 
+  const updatePage = (page: Page) => {
+    setActivePage(page);
+  }
+
+  useEffect(() => {
+    window.scrollTo({top: (window.innerHeight * PageDefinitions[activePage]), behavior: 'smooth'});
+  }, [activePage])
+
   return (
     <WindowContext.Provider value={{dimensions, updateDimensions}}>
     <HeaderContext.Provider value={{headerHeight, headerCollapsedHeight, updateHeaderCollapsedHeight, updateHeaderHeight}}>
     <ThemeContext.Provider value={{theme, updateTheme}}>
+    <PageContext.Provider value={{activePage, updatePage}}>
       <Script src="https://kit.fontawesome.com/0f1df95d88.js" crossOrigin='anonymous'></Script>
       <div className='min-h-screen w-full grid grid-rows-[auto_1fr_auto]'>
-        <div className='fixed bottom-8 right-8 z-50 flex flex-col gap-4 justify-end'>
-            <Button buttonText="" arrow='up' containerClassName='ml-auto' onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}}></Button>
+        <div className='fixed bottom-4 left-4 z-50 flex flex-col gap-4 justify-end'>
+            {/* <Button buttonText="" arrow='double-up' containerClassName='ml-auto' onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}}></Button> */}
             {/* <Button buttonText="Change Theme" onClick={() => {updateTheme(theme === 'default' ? 'neumorphism' : 'default')}}></Button> */}
         </div>
         <Header />
         <Component {...pageProps} />
         <Footer />
       </div>
+    </PageContext.Provider>
     </ThemeContext.Provider>
     </HeaderContext.Provider>
     </WindowContext.Provider>

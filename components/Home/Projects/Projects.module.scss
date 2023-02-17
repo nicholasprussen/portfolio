@@ -1,0 +1,36 @@
+.animationContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: theme('colors.dark-accent');
+    border-radius: 0.5rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.animationContainer:hover {
+    .cardOverlay {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .cardInner {
+        filter: blur(4px);
+    }
+}
+
+.cardOverlay {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.cardInner {
+    transition: all 0.2s ease-in-out;
+}
+
+.startLeft[data-active="false"] {
+    transform: translateX(-110%);
+}
+
+.startRight[data-active="false"] {
+    transform: translateX(110%);
+}

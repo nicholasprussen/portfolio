@@ -1,0 +1,12 @@
+.blinkingCursor {
+    border-bottom: solid 3px theme('colors.primary');
+    position: absolute;
+    right: -16px;
+    width: 16px;
+    animation: animated-cursor 800ms steps(30,end) infinite;
+}
+
+@keyframes animated-cursor{
+    from{border-bottom-color: theme('colors.primary');}
+    to{border-bottom-color: transparent;}
+}

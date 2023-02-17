@@ -2,8 +2,16 @@ import type { NextPage } from 'next';
 import styles from './Photography.module.scss';
 import {portfolioImages} from '../../components/images';
 import Image from 'next/future/image';
+import { useContext, useEffect } from 'react';
+import { HeaderContext } from '../_app';
 
 const Photography: NextPage = () => {
+
+    const { headerHeight } = useContext(HeaderContext);
+
+    useEffect(() => {
+        document.body.style.overflow = 'auto';
+    }, [])
 
     const renderImages = () => {
         let index = 0;
@@ -13,7 +21,7 @@ const Photography: NextPage = () => {
     }
 
     return (
-        <main className='bg-dark-accent'>
+        <main className='bg-dark-accent' style={{marginTop: headerHeight}}>
             <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center lg:mb-24 mt-4 lg:mt-20 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
                 My Photographs
             </h2>

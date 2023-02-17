@@ -1,0 +1,31 @@
+.animationContainer {
+    position: absolute;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 500ms;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: theme('colors.dark-accent');
+
+    &[data-active="false"] {
+        opacity: 0.2;
+    }
+
+    &[data-active="true"] {
+        transform: unset;
+        opacity: 1;
+    }
+}
+
+.startLeft[data-active="false"] {
+    transform: translateX(-110%);
+}
+
+.startRight[data-active="false"] {
+    transform: translateX(110%);
+}
+
+.startBottom[data-active="false"] {
+    transform: translateY(40vh);
+}

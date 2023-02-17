@@ -81,14 +81,14 @@ div.homePage[data-theme="default"] {
     }
     .slider {
         .sliderCard {
-            background-color: theme('colors.dark');
+            background-color: theme('colors.dark-accent');
             color: white;
         }
     }
 
     .cardContainer {
         .projectCard {
-            background-color: theme('colors.dark');
+            background-color: theme('colors.dark-accent');
             box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
         }
     }

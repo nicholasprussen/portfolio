@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import styles from './Button.module.scss';
-import { faAngleDown, faAngleLeft, faAngleRight, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleLeft, faAngleRight, faAnglesUp, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ThemeContext } from '../../pages/_app';
 
@@ -9,10 +9,12 @@ export interface IButtonProps {
     buttonText: string,
     onClick(): any,
     linkHref?: string,
-    arrow?: 'up' | 'down' | 'left' | 'right',
+    arrow?: 'up' | 'down' | 'left' | 'right' | 'double-up',
     disabled?: boolean,
     backgroundColor?: string,
-    containerClassName?: string
+    containerClassName?: string,
+    children?: any,
+    fontSize?: string
 }
 
 const Button = (props: IButtonProps) => {
@@ -23,6 +25,8 @@ const Button = (props: IButtonProps) => {
         switch (props.arrow) {
             case 'up':
                 return <FontAwesomeIcon icon={faAngleUp}></FontAwesomeIcon>
+            case 'double-up':
+                return <FontAwesomeIcon icon={faAnglesUp}></FontAwesomeIcon>
             case 'down':
                 return <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
             case 'left':
@@ -34,7 +38,7 @@ const Button = (props: IButtonProps) => {
 
     const renderButton = () => {
         return (
-            <button onClick={() => props.onClick?.()} className={`px-4 py-2 sm:px-8 sm:py-4 rounded text-black font-bold text-ms lg:text-xl max-w-[275px] sm:max-w-none flex justify-center items-center gap-4 ${styles.button}`} disabled={props.disabled}>
+            <button onClick={() => props.onClick?.()} className={`px-4 py-2 sm:px-8 sm:py-4 rounded text-black font-bold ${props.fontSize ? props.fontSize : "text-ms lg:text-xl"} max-w-[275px] sm:max-w-none flex justify-center items-center gap-4 ${styles.button}`} disabled={props.disabled}>
                 {props.buttonText}
                 {props.arrow && renderArrow()}
             </button>

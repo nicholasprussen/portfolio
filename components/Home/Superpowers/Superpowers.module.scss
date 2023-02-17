@@ -1,0 +1,76 @@
+.bottomGradient {
+    background-image: linear-gradient(to top, theme('colors.dark') 75%, transparent 100%);
+}
+
+.animationContainer {
+    position: absolute;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+    width: 100%;
+    border-radius: 0.5rem;
+
+    &[data-active="false"] {
+        opacity: 0;
+    }
+
+    &[data-active="true"] {
+        transform: unset;
+        opacity: 1;
+    }
+}
+
+.startLeft {
+    &[data-active="false"] {
+        transform: translateX(-110%);
+    }
+}
+
+.superpowerCard {
+    background-color: theme('colors.dark-accent');
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 5rem;
+    box-sizing: border-box;
+
+    .firstCol {
+        padding: 0.75rem;
+
+        span {
+            max-height: 100%;
+        }
+    }
+
+    .secondCol {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 0.5rem 0.5rem 0.5rem 0;
+        .firstRow {
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        .secondRow {
+            background-color: theme('colors.dark');
+            border-radius: 0.5rem;
+            .innerBar {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                height: 100%;
+                border-radius: 0.5rem;
+                background-color: theme('colors.primary');
+
+                p {
+                    margin-right: 0.25rem;
+                    font-weight: bold;
+                    font-style: italic;
+                    font-size: medium;
+                    color: theme('colors.dark');
+                }
+            }
+        }
+    }
+}
