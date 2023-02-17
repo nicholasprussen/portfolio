@@ -189,9 +189,9 @@ const Superpowers = (props: ISuperpowersProps) => {
                             <div className={`h-[10vh]`}></div>
                         </div>
                     </div>
-                    <div className={`${styles.bottomGradient} absolute h-[23%] w-full bottom-0`}></div>
+                    <div className={`${styles.bottomGradient} absolute h-[15%] w-full bottom-0`}></div>
                 </div>
-                <div className={`absolute h-[20%] w-full flex justify-center bottom-0`}>
+                {/* <div className={`absolute h-[20%] w-full flex justify-center bottom-0`}>
                     <div className='absolute bottom-4 right-4'>
                         <Button buttonText="" arrow='up' containerClassName='ml-auto' onClick={() => updatePage('About Me')}></Button>
                     </div>
@@ -201,7 +201,7 @@ const Superpowers = (props: ISuperpowersProps) => {
                         arrow={'down'}
                         backgroundColor={'bg-dark'}>
                     </Button>
-                </div>
+                </div> */}
             </div>
         </>
     );

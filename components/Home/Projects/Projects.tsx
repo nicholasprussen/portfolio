@@ -97,7 +97,7 @@ const Projects = (props: IProjectsProps) => {
 
     return (
         <div className='w-full h-full max-h-full max-w-full' ref={containerRef}>
-            <div className='h-[80%] max-h-3/4 w-full relative flex flex-col'>
+            <div className='h-[100%] max-h-3/4 w-full relative flex flex-col'>
                 <div className={`text-5xl font-bold text-center col-span-full row-span-1 mb-2`}>
                     Projects
                 </div>
@@ -110,7 +110,7 @@ const Projects = (props: IProjectsProps) => {
                     </div>
                 </div>
             </div>
-            <div className='h-[20%] w-full flex justify-center relative'>
+            {/* <div className='h-[20%] w-full flex justify-center relative'>
                 <div className='absolute bottom-4 right-4'>
                     <Button buttonText="" arrow='up' containerClassName='ml-auto' onClick={() => updatePage('Superpowers')}></Button>
                 </div>
@@ -120,7 +120,7 @@ const Projects = (props: IProjectsProps) => {
                     arrow={'double-up'}
                     backgroundColor={'bg-dark'}>
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
 };

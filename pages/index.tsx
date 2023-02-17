@@ -27,7 +27,7 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    // document.body.style.overflow = 'hidden';
   }, []);
 
   return (

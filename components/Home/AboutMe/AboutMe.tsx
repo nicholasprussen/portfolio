@@ -35,7 +35,7 @@ const AboutMe = (props: IAboutMeProps) => {
 
     return (
         <div className='w-full h-full max-h-full max-w-full'>
-            <div className='h-[80%] max-h-3/4 w-full flex flex-col py-2 items-center overflow-hidden' ref={containerRef}>
+            <div className='h-[100%] max-h-3/4 w-full flex flex-col py-2 items-center overflow-hidden' ref={containerRef}>
                 <div className='flex-grow grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-2 w-full px-4 max-h-full'>
                     <div className={`text-5xl font-bold text-center col-span-full row-span-1 mb-2`}>
                         About Me
@@ -89,7 +89,7 @@ const AboutMe = (props: IAboutMeProps) => {
                     </div>
                 </div>
             </div>
-            <div className='h-[20%] w-full flex justify-center relative'>
+            {/* <div className='h-[20%] w-full flex justify-center relative'>
                 <div className='absolute bottom-4 right-4'>
                     <Button buttonText="" arrow='up' containerClassName='ml-auto' onClick={() => updatePage('Intro')}></Button>
                 </div>
@@ -99,7 +99,7 @@ const AboutMe = (props: IAboutMeProps) => {
                     arrow={'down'}
                     backgroundColor={'bg-dark'}>
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
 };

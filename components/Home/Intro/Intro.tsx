@@ -107,7 +107,7 @@ const Intro = (props: IIntroProps) => {
 
     return (
         <div className='w-full h-full max-h-full max-w-full'>
-            <div className='h-[80%] w-full flex flex-col justify-center items-center'>
+            <div className='h-[100%] w-full flex flex-col justify-center items-center'>
                 <h1 className="text-4xl font-bold text-center relative">
                     {`Hi I'm ${introMessage}`}
                     <div className={styles.blinkingCursor}></div>
@@ -116,14 +116,14 @@ const Intro = (props: IIntroProps) => {
                     {mapSocialLinks()}
                 </div>
             </div>
-            <div className='h-[20%] w-full flex justify-center'>
+            {/* <div className='h-[20%] w-full flex justify-center'>
                 <Button 
                     buttonText='Hi Nicholas! Can you tell me a bit about yourself?'
                     onClick={() => {updatePage('About Me')}}
                     arrow={'down'}
                     backgroundColor={'bg-dark'}>
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
 };
