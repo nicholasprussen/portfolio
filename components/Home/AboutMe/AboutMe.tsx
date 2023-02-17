@@ -83,7 +83,7 @@ const AboutMe = (props: IAboutMeProps) => {
                             <img src={"images/home/aboutme/boise-state-logo.png"} className={'max-w-[70px] max-h-[70px]'}></img>
                             <div>
                                 <p><b>Boise State University</b></p>
-                                <p><b>Bachelor's</b> in <b>Computer Science</b></p>
+                                <p><b>Bachelor&quot;s</b> in <b>Computer Science</b></p>
                             </div>
                         </div>
                     </div>

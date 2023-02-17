@@ -75,12 +75,12 @@ const Projects = (props: IProjectsProps) => {
     const renderProjects = () => {
         return ProjectCards.map((project, idx) => {
             return (
-                <div className="w-full h-full relative row-span-5">
+                <div className="w-full h-full relative row-span-5" key={idx}>
                     <div className={`${styles.animationContainer} ${idx % 2 === 0 ? styles.startLeft : styles.startRight} relative overflow-hidden`} style={{transitionDelay: `${idx}00ms`}} data-active={isVisible}>
                         <div className={`${styles.cardOverlay} absolute top-0 left-0 w-full h-full p-2 z-[100]`}>
                             {
                                 project?.href ?
-                                <a href={project?.href} target="_blank" className="font-bold text-lg text-primary underline">
+                                <a href={project?.href} target="_blank" rel="noreferrer" className="font-bold text-lg text-primary underline">
                                     {project.title}
                                 </a> :
                                 <p className='font-bold text-lg'>{project.title}</p>
