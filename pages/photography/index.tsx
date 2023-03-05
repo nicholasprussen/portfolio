@@ -16,15 +16,21 @@ const Photography: NextPage = () => {
     const renderImages = () => {
         let index = 0;
         return portfolioImages.map((image) => {
-            return <img src={image} alt={image.toString()} key={index++} loading="eager" className={`rounded-xl ${image.includes("Vertical") ? styles.verticalImg : ''}`}/>;
+            return (
+                <div className={`relative overflow-hidden rounded-xl ${image.includes("Vertical") ? styles.verticalImg : ''}`} key={index++}>
+                    <Image fill src={image} alt={image.toString()} loading="lazy"></Image>
+                </div>
+            )
+
+            // return <Image fill={} src={image} alt={image.toString()} key={index++} loading="lazy" className={`rounded-xl ${image.includes("Vertical") ? styles.verticalImg : ''}`}/>;
         })
     }
 
     return (
-        <main className='bg-dark-accent' style={{marginTop: headerHeight}}>
-            <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center lg:mb-24 mt-4 lg:mt-20 ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
-                My Photographs
-            </h2>
+        <main className='bg-dark' style={{marginTop: headerHeight}}>
+            <div className={`text-5xl font-bold text-center my-2`}>
+                Photos
+            </div>
             <section className={styles.portfolio}>
                 {renderImages()}
             </section>
