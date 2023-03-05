@@ -105,8 +105,6 @@ const Superpowers = (props: ISuperpowersProps) => {
     const containerRef = useRef(null);
     const superpowerScrollRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
-    const [superpowerAppearance, setSuperpowerAppearance] = useState<"fancy" | "simple">("fancy");
-    const { activePage, updatePage } = useContext(PageContext);
 
     const options = {
         root: null,
@@ -126,13 +124,6 @@ const Superpowers = (props: ISuperpowersProps) => {
             if (containerRef.current) observer.unobserve(containerRef.current);
         }
     }, [containerRef])
-
-    useEffect(() => {
-        if (!isVisible || !superpowerScrollRef) {
-            return;
-        }
-        superpowerScrollRef?.current?.scrollTo({top: 0});
-    }, [isVisible])
 
     const getWidth = (level: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert'): string => {
         switch (level) {

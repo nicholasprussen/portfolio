@@ -120,7 +120,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ThemeContext.Provider value={{theme, updateTheme}}>
     <PageContext.Provider value={{activePage, updatePage}}>
       <Script src="https://kit.fontawesome.com/0f1df95d88.js" crossOrigin='anonymous'></Script>
-      <div className='min-h-screen w-full grid grid-rows-[auto_1fr_auto]'>
+      <div className='w-full grid grid-rows-[auto_1fr_auto]' style={{minHeight: '100lvh'}}>
         <div className='fixed bottom-4 left-4 z-50 flex flex-col gap-4 justify-end'>
             {/* <Button buttonText="" arrow='double-up' containerClassName='ml-auto' onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'})}}></Button> */}
             {/* <Button buttonText="Change Theme" onClick={() => {updateTheme(theme === 'default' ? 'neumorphism' : 'default')}}></Button> */}
