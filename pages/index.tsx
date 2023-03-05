@@ -44,7 +44,7 @@ const Home: NextPage = () => {
         </section>
         <section className='w-full bg-dark flex flex-col overflow-hidden' style={{height: '100lvh'}}>
             <div style={{height: dimensions.height - getTopSectionHeight()}} ref={superPowersRef}></div>
-            <div className='w-full flex-grow' style={{maxHeight: getTopSectionHeight()}}>
+            <div className='w-full flex-grow'>
                 <Superpowers />
             </div>
         </section>
