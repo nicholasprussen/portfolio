@@ -111,13 +111,14 @@ const Superpowers = (props: ISuperpowersProps) => {
     const options = {
         root: null,
         rootMargin: "0px",
-        threshold: 1.0
+        threshold: 0.2
     }
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             const [ entry ] = entries;
-            setIsVisible(entry.isIntersecting);
+            if (entry.isIntersecting)
+                setIsVisible(entry.isIntersecting);
         }, options);
         if (containerRef.current) observer.observe(containerRef.current);
 
@@ -180,16 +181,16 @@ const Superpowers = (props: ISuperpowersProps) => {
         <>
             <div className='w-full h-full max-h-full max-w-full relative'>
                 <div className='h-full max-h-full w-full flex flex-col justify-around items-center overflow-hidden' ref={containerRef}>
-                    <div className='flex-grow w-full grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-2 max-h-full px-4 relative'>
+                    <div className='flex-grow w-full grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-2 max-h-full px-4 relative'>
                         <div className={`text-5xl font-bold text-center col-span-full row-span-1 mb-2`}>
                             Superpowers
                         </div>
-                        <div className={`row-start-2 row-end-[11] col-span-full w-full h-full overflow-auto`} ref={superpowerScrollRef} id={"allow-scroll"}>
+                        <div className={`row-start-2 row-span-full col-span-full w-full h-full overflow-auto`} ref={superpowerScrollRef} id={"allow-scroll"}>
                             {renderSuperpowers()}
-                            <div className={`h-[10vh]`}></div>
+                            {/* <div className={`h-[10vh]`}></div> */}
                         </div>
                     </div>
-                    <div className={`${styles.bottomGradient} absolute h-[15%] w-full bottom-0`}></div>
+                    {/* <div className={`${styles.bottomGradient} absolute h-[15%] w-full bottom-0`}></div> */}
                 </div>
                 {/* <div className={`absolute h-[20%] w-full flex justify-center bottom-0`}>
                     <div className='absolute bottom-4 right-4'>

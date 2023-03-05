@@ -11,42 +11,104 @@ import { PageContext } from '../../../pages/_app';
 export interface IAboutMeProps extends IHomeCommon {}
 
 const AboutMe = (props: IAboutMeProps) => {
-    const containerRef = useRef(null);
-    const [isVisible, setIsVisible] = useState(false);
-    const { activePage, updatePage } = useContext(PageContext);
+
+    const headshotContainerRef = useRef(null);
+    const hobbiesContainerRef = useRef(null);
+    const locatedContainerRef = useRef(null);
+    const employedContainerRef = useRef(null);
+    const schoolContainerRef = useRef(null);
+
+    const [headshotIsVisible, setHeadshotIsVisible] = useState(false);
+    const [hobbiesIsVisible, setHobbiesIsVisible] = useState(false);
+    const [locatedIsVisible, setLocatedIsVisible] = useState(false);
+    const [employedIsVisible, setEmployedIsVisible] = useState(false);
+    const [schoolIsVisible, setSchoolIsVisible] = useState(false);
 
     const options = {
         root: null,
         rootMargin: "0px",
-        threshold: 1.0
+        threshold: 0.25
     }
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             const [ entry ] = entries;
-            setIsVisible(entry.isIntersecting);
+            if (entry.isIntersecting)
+                setHeadshotIsVisible(entry.isIntersecting);
         }, options);
-        if (containerRef.current) observer.observe(containerRef.current);
+        if (headshotContainerRef.current) observer.observe(headshotContainerRef.current);
 
         return () => {
-            if (containerRef.current) observer.unobserve(containerRef.current);
+            if (headshotContainerRef.current) observer.unobserve(headshotContainerRef.current);
         }
-    }, [containerRef])
+    }, [headshotContainerRef])
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const [ entry ] = entries;
+            if (entry.isIntersecting)
+                setHobbiesIsVisible(entry.isIntersecting);
+        }, options);
+        if (hobbiesContainerRef.current) observer.observe(hobbiesContainerRef.current);
+
+        return () => {
+            if (hobbiesContainerRef.current) observer.unobserve(hobbiesContainerRef.current);
+        }
+    }, [hobbiesContainerRef])
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const [ entry ] = entries;
+            if (entry.isIntersecting)
+                setLocatedIsVisible(entry.isIntersecting);
+        }, options);
+        if (locatedContainerRef.current) observer.observe(locatedContainerRef.current);
+
+        return () => {
+            if (locatedContainerRef.current) observer.unobserve(locatedContainerRef.current);
+        }
+    }, [locatedContainerRef])
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const [ entry ] = entries;
+            if (entry.isIntersecting)
+                setEmployedIsVisible(entry.isIntersecting);
+        }, options);
+        if (employedContainerRef.current) observer.observe(employedContainerRef.current);
+
+        return () => {
+            if (employedContainerRef.current) observer.unobserve(employedContainerRef.current);
+        }
+    }, [employedContainerRef])
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const [ entry ] = entries;
+            if (entry.isIntersecting)
+                setSchoolIsVisible(entry.isIntersecting);
+        }, options);
+        if (schoolContainerRef.current) observer.observe(schoolContainerRef.current);
+
+        return () => {
+            if (schoolContainerRef.current) observer.unobserve(schoolContainerRef.current);
+        }
+    }, [schoolContainerRef])
 
     return (
         <div className='w-full h-full max-h-full max-w-full'>
-            <div className='h-[100%] max-h-3/4 w-full flex flex-col py-2 items-center overflow-hidden' ref={containerRef}>
+            <div className='h-[100%] max-h-3/4 w-full flex flex-col py-2 items-center overflow-hidden'>
                 <div className='flex-grow grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-2 w-full px-4 max-h-full'>
                     <div className={`text-5xl font-bold text-center col-span-full row-span-1 mb-2`}>
                         About Me
                     </div>
-                    <div className='row-start-2 row-end-6 col-start-1 col-end-6 h-full w-full relative'>
-                        <div className={`${styles.animationContainer} ${styles.startLeft}`} data-active={isVisible}>
+                    <div className='row-start-2 row-end-6 col-start-1 col-end-6 h-full w-full relative' ref={headshotContainerRef}>
+                        <div className={`${styles.animationContainer} ${styles.startLeft}`} data-active={headshotIsVisible}>
                             <img src="images/home/headshot2.jpg" className='rounded-lg max-w-full max-h-full w-full h-full object-cover'></img>
                         </div>
                     </div>
-                    <div className='row-start-2 row-end-4 col-start-6 col-end-9 h-full w-full relative'>
-                        <div className={`${styles.animationContainer} ${styles.startRight} bg-dark p-2`} data-active={isVisible}>
+                    <div className='row-start-2 row-end-4 col-start-6 col-end-9 h-full w-full relative' ref={hobbiesContainerRef}>
+                        <div className={`${styles.animationContainer} ${styles.startRight} bg-dark p-2`} data-active={hobbiesIsVisible}>
                             <div className='mx-auto h-full grid grid-cols-[1fr_1fr] grid-rows-[1fr_1fr_1fr] w-[90%]'>
                                 <div className='flex col-span-2 justify-center items-center'>
                                     <p className='text-xl text-center'><b>Hobbies</b></p>
@@ -66,20 +128,20 @@ const AboutMe = (props: IAboutMeProps) => {
                             </div>
                         </div>
                     </div>
-                    <div className='row-span-2 col-span-3 relative'>
-                        <div className={`${styles.animationContainer} ${styles.startRight} delay-200 bg-dark flex flex-col items-center justify-center`} data-active={isVisible}>
+                    <div className='row-span-2 col-span-3 relative' ref={locatedContainerRef}>
+                        <div className={`${styles.animationContainer} ${styles.startRight} delay-200 bg-dark flex flex-col items-center justify-center`} data-active={locatedIsVisible}>
                             <p className='text-center'>Located in</p>
                             <p className='text-center'><b>Boise, ID</b></p>
                         </div>
                     </div>
-                    <div className='col-start-1 col-end-9 row-start-6 row-end-7 h-full w-full relative'>
-                        <div className={`${styles.animationContainer} ${styles.startBottom} delay-300 bg-dark flex justify-center items-center gap-4`} data-active={isVisible}>
+                    <div className='col-start-1 col-end-9 row-start-6 row-end-7 h-full w-full relative' ref={employedContainerRef}>
+                        <div className={`${styles.animationContainer} ${styles.startBottom} delay-300 bg-dark flex justify-center items-center gap-4`} data-active={employedIsVisible}>
                             <img src="images/home/aboutme/micron-logo.png" className='max-w-[30px] max-h-[28px]'></img>
                             <p className='text-center'>Employed at <b>Micron Technology Inc.</b></p>
                         </div>
                     </div>
-                    <div className='row-span-2 col-span-8 relative'>
-                        <div className={`${styles.animationContainer} ${styles.startBottom} delay-[400ms] bg-dark flex justify-between items-center p-4`} data-active={isVisible}>
+                    <div className='row-span-2 col-span-8 relative' ref={schoolContainerRef}>
+                        <div className={`${styles.animationContainer} ${styles.startBottom} delay-[400ms] bg-dark flex justify-between items-center p-4`} data-active={schoolIsVisible}>
                             <img src={"images/home/aboutme/boise-state-logo.png"} className={'max-w-[70px] max-h-[70px]'}></img>
                             <div>
                                 <p><b>Boise State University</b></p>

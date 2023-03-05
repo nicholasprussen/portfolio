@@ -57,13 +57,14 @@ const Projects = (props: IProjectsProps) => {
     const options = {
         root: null,
         rootMargin: "0px",
-        threshold: 1.0
+        threshold: 0.25
     }
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             const [ entry ] = entries;
-            setIsVisible(entry.isIntersecting);
+            if (entry.isIntersecting)
+                setIsVisible(entry.isIntersecting);
         }, options);
         if (containerRef.current) observer.observe(containerRef.current);
 
@@ -77,7 +78,7 @@ const Projects = (props: IProjectsProps) => {
             return (
                 <div className="w-full h-full relative row-span-5" key={idx}>
                     <div className={`${styles.animationContainer} ${idx % 2 === 0 ? styles.startLeft : styles.startRight} relative overflow-hidden`} style={{transitionDelay: `${idx}00ms`}} data-active={isVisible}>
-                        <div className={`${styles.cardOverlay} absolute top-0 left-0 w-full h-full p-2 z-[100]`}>
+                        <div className={`${styles.cardOverlay} absolute top-0 left-0 w-full h-full p-2 z-[50]`}>
                             {
                                 project?.href ?
                                 <a href={project?.href} target="_blank" rel="noreferrer" className="font-bold text-lg text-primary underline">
