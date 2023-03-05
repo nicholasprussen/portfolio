@@ -172,13 +172,12 @@ const Superpowers = (props: ISuperpowersProps) => {
         <>
             <div className='w-full h-full max-h-full max-w-full relative'>
                 <div className='h-full max-h-full w-full flex flex-col justify-around items-center overflow-hidden' ref={containerRef}>
-                    <div className='flex-grow w-full grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-2 max-h-full px-4 relative'>
+                    <div className='flex-grow w-full flex flex-col gap-2 max-h-full px-4 relative'>
                         <div className={`text-5xl font-bold text-center col-span-full row-span-1 mb-2`}>
                             Superpowers
                         </div>
-                        <div className={`row-start-2 row-span-full col-span-full w-full h-full overflow-auto`} ref={superpowerScrollRef} id={"allow-scroll"}>
+                        <div className={`flex-grow overflow-auto`} ref={superpowerScrollRef} id={"allow-scroll"}>
                             {renderSuperpowers()}
-                            {/* <div className={`h-[10vh]`}></div> */}
                         </div>
                     </div>
                     {/* <div className={`${styles.bottomGradient} absolute h-[15%] w-full bottom-0`}></div> */}
