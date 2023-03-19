@@ -4,7 +4,8 @@
     height: 100%;
     background-color: theme('colors.dark-accent');
     border-radius: 0.5rem;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.9s ease-in-out;
+    border: 2px solid theme('colors.dark-accent');
 }
 
 .animationContainer:hover {
@@ -18,6 +19,12 @@
     }
 }
 
+.projectsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(8, 1fr);
+}
+
 .cardOverlay {
     opacity: 0;
     transition: all 0.2s ease-in-out;
@@ -28,9 +35,9 @@
 }
 
 .startLeft[data-active="false"] {
-    transform: translateX(-110%);
+    transform: translateX(-110vw);
 }
 
 .startRight[data-active="false"] {
-    transform: translateX(110%);
+    transform: translateX(110vw);
 }

@@ -108,7 +108,7 @@ const Intro = (props: IIntroProps) => {
     return (
         <div className='w-full h-full max-h-full max-w-full'>
             <div className='h-[100%] w-full flex flex-col justify-center items-center'>
-                <h1 className="text-4xl font-bold text-center relative">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-center relative">
                     {`Hi I'm ${introMessage}`}
                     <div className={styles.blinkingCursor}></div>
                 </h1>
@@ -116,32 +116,7 @@ const Intro = (props: IIntroProps) => {
                     {mapSocialLinks()}
                 </div>
             </div>
-            {/* <div className='h-[20%] w-full flex justify-center'>
-                <Button 
-                    buttonText='Hi Nicholas! Can you tell me a bit about yourself?'
-                    onClick={() => {updatePage('About Me')}}
-                    arrow={'down'}
-                    backgroundColor={'bg-dark'}>
-                </Button>
-            </div> */}
         </div>
     );
 };
 export default Intro;
-
-{/* <div className='flex flex-col h-full w-full justify-center gap-[20%] items-center'>
-            <div className='flex flex-col justify-center items-center'>
-                <h1 className={`text-2xl 2xs:text-[2em] xs:text-[3em] sm:text-[3.5em] md:text-[4em] lg:text-[5em] font-bold ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
-                    {"Hi, I'm Nicholas"}
-                </h1>
-                <p className={`text-[1em] md:text-[1.4em] font-serif font-bold ${styles.firstSectionText}`}>
-                    <span className='text-primary'>Boise</span> based <span className='text-primary'>Full Stack Developer</span>, with a <span className='text-primary'>Bachelors of Science</span> in <span className='text-primary'>Computer Science</span>. Currently working at <span className='text-primary'>Micron Technology</span>.
-                </p>
-                <div className={`flex gap-8 text-[1.8em] xs:text-[2em] lg:text-[2.5em] p-4 ${styles.socialLinks}`}>
-                    {mapSocialLinks()}
-                </div>
-            </div>
-            <div className=''>
-                <Button buttonText='Hi Nicholas! Can you tell me a bit about yourself?' onClick={() => {aboutRef.current?.scrollIntoView({behavior: 'smooth'})}} arrow={'down'} backgroundColor={'bg-dark'}></Button>
-            </div>
-        </div> */}

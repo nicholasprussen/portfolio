@@ -13,24 +13,23 @@ const Photography: NextPage = () => {
         document.body.style.overflow = 'auto';
     }, [])
 
+    const loadingStatus: boolean[] = [];
+
     const renderImages = () => {
         let index = 0;
         return portfolioImages.map((image) => {
+            loadingStatus.push(true);
             return (
                 <div className={`relative overflow-hidden rounded-xl ${image.includes("Vertical") ? styles.verticalImg : ''}`} key={index++}>
-                    <Image fill src={image} alt={image.toString()} loading="lazy"></Image>
+                    <div className={`${loadingStatus[index] ? 'block' : 'hidden'} absolute w-full h-full top-0 right-0 bg-dark ${styles.photoLoading}`}></div>
+                    <Image fill style={{objectFit: 'cover'}} src={image} alt={image.toString()} loading="lazy" onLoadingComplete={() => loadingStatus[index] = false}></Image>
                 </div>
             )
-
-            // return <Image fill={} src={image} alt={image.toString()} key={index++} loading="lazy" className={`rounded-xl ${image.includes("Vertical") ? styles.verticalImg : ''}`}/>;
         })
     }
 
     return (
-        <main className='bg-dark' style={{marginTop: headerHeight}}>
-            <div className={`text-5xl font-bold text-center my-2`}>
-                Photos
-            </div>
+        <main className='bg-dark w-full h-full md:max-w-[1536px] mx-auto' style={{marginTop: headerHeight}}>
             <section className={styles.portfolio}>
                 {renderImages()}
             </section>

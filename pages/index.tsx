@@ -36,15 +36,15 @@ const Home: NextPage = () => {
         <section className={styles.topSection} style={{height: '100lvh'}} ref={introRef}>
             <Intro />
         </section>
-        <section className='w-full flex flex-col justify-center items-center' ref={aboutRef} style={{height: '100lvh'}}>
+        <section className='w-full flex flex-col justify-center items-center' style={{height: '100lvh'}}>
             <div style={{height: dimensions.height - getTopSectionHeight()}}></div>
             <div className='flex-grow w-full'>
                 <AboutMe />
             </div>
         </section>
-        <section className='w-full bg-dark flex flex-col overflow-hidden' style={{height: '100lvh'}}>
-            <div style={{height: dimensions.height - getTopSectionHeight()}} ref={superPowersRef}></div>
-            <div className='w-full flex-grow'>
+        <section className='w-full flex flex-col justify-center items-center' style={{height: '100lvh'}}>
+            <div style={{height: dimensions.height - getTopSectionHeight()}}></div>
+            <div className='w-full' style={{height: dimensions.height - headerHeight}}>
                 <Superpowers />
             </div>
         </section>

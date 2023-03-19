@@ -18,8 +18,18 @@ import sass from "public/images/superpowers/sass.webp";
 import tailwind from "public/images/superpowers/tailwind.png";
 import typescript from "public/images/superpowers/typescript.png";
 import html from "public/images/superpowers/html.png";
-import css from "public/images/superpowers/css.png";
-import { PageContext } from '../../../pages/_app';
+import rxjs from "public/images/superpowers/rxjs.png";
+import aggrid from "public/images/superpowers/ag-grid.png";
+import flask from "public/images/superpowers/flask.png";
+import sqlalchemy from "public/images/superpowers/sqlalchemy.png";
+import mongodb from "public/images/superpowers/mongodb.png";
+import postgresql from "public/images/superpowers/postgresql.png";
+import snowflake from "public/images/superpowers/snowflake.png";
+import cosmosdb from "public/images/superpowers/cosmosdb.png";
+import docker from "public/images/superpowers/docker.webp";
+import php from "public/images/superpowers/php.png";
+
+import { PageContext, WindowContext } from '../../../pages/_app';
 
 interface SkillsetImage {
   /** Static image data for this image */
@@ -33,6 +43,18 @@ interface SkillsetImage {
 
 /** All skillset images */
 const images: SkillsetImage[] = [
+  {
+    image: html,
+    text: "HTML/CSS",
+    alt: "html logo",
+    level: "Expert"
+  },
+  {
+    image: javascript,
+    text: "JavaScript",
+    alt: "javascript logo",
+    level: "Expert"
+  },
   {
     image: angular,
     text: "Angular",
@@ -52,12 +74,6 @@ const images: SkillsetImage[] = [
     level: "Advanced"
   },
   {
-    image: javascript,
-    text: "JavaScript",
-    alt: "javascript logo",
-    level: "Expert"
-  },
-  {
     image: bootstrap,
     text: "Bootstrap",
     alt: "bootstrap logo",
@@ -68,18 +84,6 @@ const images: SkillsetImage[] = [
     text: ".NET Core",
     alt: ".net core logo",
     level: "Advanced"
-  },
-  {
-    image: python,
-    text: "Python",
-    alt: "python logo",
-    level: "Intermediate"
-  },
-  {
-    image: sass,
-    text: "Sass",
-    alt: "sass logo",
-    level: "Intermediate"
   },
   {
     image: tailwind,
@@ -94,10 +98,76 @@ const images: SkillsetImage[] = [
     level: "Advanced"
   },
   {
-    image: html,
-    text: "HTML/CSS",
-    alt: "html logo",
-    level: "Expert"
+    image: rxjs,
+    text: "RxJS",
+    alt: "rxjs logo",
+    level: "Advanced"
+  },
+  {
+    image: mongodb,
+    text: "MongoDB",
+    alt: "mongodb logo",
+    level: "Advanced"
+  },
+  {
+    image: postgresql,
+    text: "PostgreSQL",
+    alt: "postgresql logo",
+    level: "Advanced"
+  },
+  {
+    image: docker,
+    text: "Docker",
+    alt: "docker logo",
+    level: "Intermediate"
+  },
+  {
+    image: snowflake,
+    text: "Snowflake",
+    alt: "snowflake logo",
+    level: "Intermediate"
+  },
+  {
+    image: cosmosdb,
+    text: "Azure CosmosDB",
+    alt: "cosmosdb logo",
+    level: "Intermediate"
+  },
+  {
+    image: flask,
+    text: "Flask",
+    alt: "flask logo",
+    level: "Intermediate"
+  },
+  {
+    image: php,
+    text: "PHP",
+    alt: "php logo",
+    level: "Intermediate"
+  },
+  {
+    image: aggrid,
+    text: "AG Grid",
+    alt: "ag grid logo",
+    level: "Intermediate"
+  },
+  {
+    image: python,
+    text: "Python",
+    alt: "python logo",
+    level: "Intermediate"
+  },
+  {
+    image: sass,
+    text: "Sass",
+    alt: "sass logo",
+    level: "Intermediate"
+  },
+  {
+    image: sqlalchemy,
+    text: "SQLAlchemy",
+    alt: "sqlalchemy logo",
+    level: "Beginner"
   },
 ];
 
@@ -118,10 +188,10 @@ const Superpowers = (props: ISuperpowersProps) => {
             if (entry.isIntersecting)
                 setIsVisible(entry.isIntersecting);
         }, options);
-        if (containerRef.current) observer.observe(containerRef.current);
+        if (superpowerScrollRef.current) observer.observe(superpowerScrollRef.current);
 
         return () => {
-            if (containerRef.current) observer.unobserve(containerRef.current);
+            if (superpowerScrollRef.current) observer.unobserve(superpowerScrollRef.current);
         }
     }, [containerRef])
 
@@ -144,8 +214,10 @@ const Superpowers = (props: ISuperpowersProps) => {
         let index = -1;
         return images.map(image => {
             index++;
+            let gridColumEnd = index % 2 === 0 ? 2 : 3;
+            let gridColumnStart = index % 2 === 0 ? 1 : 2;
             return (
-                <div className='relative h-[5rem] w-full mb-2' key={index}>
+                <div className='relative h-[5rem] w-full mb-2' style={{gridColumnStart: gridColumnStart, gridColumnEnd: gridColumEnd}} key={index}>
                     <div className={`${styles.animationContainer} ${styles.startLeft}`} style={{transitionDelay: `${index}00ms`}} data-active={isVisible}>
                         <div className={`${styles.superpowerCard}`}>
                             <div className={styles.firstCol}>
@@ -169,47 +241,14 @@ const Superpowers = (props: ISuperpowersProps) => {
     }
 
     return (
-        <>
-            <div className='w-full h-full max-h-full max-w-full relative'>
-                <div className='h-full max-h-full w-full flex flex-col justify-around items-center overflow-hidden' ref={containerRef}>
-                    <div className='flex-grow w-full flex flex-col gap-2 max-h-full px-4 relative'>
-                        <div className={`text-5xl font-bold text-center col-span-full row-span-1 mb-2`}>
-                            Superpowers
-                        </div>
-                        <div className={`flex-grow overflow-auto`} ref={superpowerScrollRef} id={"allow-scroll"}>
-                            {renderSuperpowers()}
-                        </div>
-                    </div>
-                    {/* <div className={`${styles.bottomGradient} absolute h-[15%] w-full bottom-0`}></div> */}
-                </div>
-                {/* <div className={`absolute h-[20%] w-full flex justify-center bottom-0`}>
-                    <div className='absolute bottom-4 right-4'>
-                        <Button buttonText="" arrow='up' containerClassName='ml-auto' onClick={() => updatePage('About Me')}></Button>
-                    </div>
-                    <Button 
-                        buttonText="Those are cool and all, but where's the experience?"
-                        onClick={() => updatePage('Projects')}
-                        arrow={'down'}
-                        backgroundColor={'bg-dark'}>
-                    </Button>
-                </div> */}
+        <div className={`${styles.superpowerContainer} md:max-w-5xl xl:max-w-7xl mx-auto`}>
+            <div className={`${styles.title} md:text-6xl`}>
+                Superpowers
             </div>
-        </>
+            <div className={styles.cardContainer} ref={superpowerScrollRef}>
+                {renderSuperpowers()}
+            </div>
+        </div>
     );
 };
 export default Superpowers;
-
-{/* <div className='w-full container mx-auto flex gap-4 md:gap-24 flex-col'>
-          <h2 className={`text-2xl 2xs:text-[1.8em] xs:text-[2em] sm:text-[2.5em] md:text-[3em] lg:text-[4em] font-bold text-center ${styles.lineHeightNormal} ${styles.headingTextShadow}`}>
-            My Superpowers
-          </h2>
-          <div className={`${styles.slider}`} ref={sliderRef}>
-            <div className={`${styles.sliderTrack}`} style={{width: sliderTrackWidth, transform: `translateX(${sliderOffset}px)`}}>
-              {renderImages()}
-            </div>
-          </div>
-          <p style={{"display": dimensions.width < 768 ? 'block' : 'none'}} className='text-center'>This scrolls automatically I promise...</p>
-        </div> 
-        <div className='w-full flex justify-center items-center mb-24'>
-          <Button buttonText="Those are cool and all, but where's the experience?" onClick={() => {timelineRef.current?.scrollIntoView({behavior: 'smooth'})}} arrow={'down'} backgroundColor={'bg-dark-accent'}></Button>
-        </div> */}

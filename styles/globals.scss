@@ -51,3 +51,16 @@ a {
         background: theme('colors.dark');
     }
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: theme('colors.primary');
+    border-radius: 0.25rem;
+}

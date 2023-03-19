@@ -2,7 +2,7 @@
     position: absolute;
     transition-property: all;
     transition-timing-function: ease-in-out;
-    transition-duration: 500ms;
+    transition-duration: 900ms;
     height: 100%;
     width: 100%;
     border-radius: 0.5rem;
@@ -19,13 +19,34 @@
 }
 
 .startLeft[data-active="false"] {
-    transform: translateX(-110%);
+    transform: translateX(-100vw);
 }
 
 .startRight[data-active="false"] {
-    transform: translateX(110%);
+    transform: translateX(100vw);
 }
 
 .startBottom[data-active="false"] {
-    transform: translateY(40vh);
+    transform: translateY(100vh);
+}
+
+.mapBackground {
+    background: url("/images/home/aboutme/boise.jpg");
+    
+}
+
+.collegeSection {
+    background: url("/images/home/aboutme/boise-state-logo.png");
+    background-size: 60%;
+    background-position: 100% 25%;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+}
+
+.employeeSection {
+    background: url("/images/home/aboutme/micron-logo.png");
+    background-size: 60%;
+    background-position: 100% 45%;
+    background-repeat: no-repeat;
+    opacity: 0.2;
 }
