@@ -2,12 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Header.module.scss";
-import { faHouse, IconDefinition, faAddressCard, faCameraRetro, faEnvelope, faDiagramProject, faFileWord, faHamburger } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, IconDefinition, faCameraRetro, faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import AnimateHeight, { Height } from "react-animate-height";
-import { HeaderContext, Page, PageDefinitions, ThemeContext, WindowContext } from "../../pages/_app";
-import Button from "../Button/Button";
-import { PageContext } from "../../pages/_app";
+import { HeaderContext, WindowContext } from "../../pages/_app";
 
 export interface IHeaderLinks {
     /** Link that the anchor tag will use */
@@ -68,10 +66,8 @@ const Header = () => {
     const [headerHeight, setHeaderHeight] = useState<number>(0);
     const headerContainer = useRef<HTMLDivElement>(null);
     const { updateHeaderHeight, updateHeaderCollapsedHeight } = useContext(HeaderContext);
-    const { theme } = useContext(ThemeContext);
     const { dimensions } = useContext(WindowContext);
     const router = useRouter();
-    const { activePage, updatePage } = useContext(PageContext);
 
     /** UseEffects */
     useEffect(() => {
@@ -107,12 +103,10 @@ const Header = () => {
                         !headerLink.disabled ? 
                         <Link href={headerLink.href}>
                             <a className="w-full flex md:gap-2 lg:gap-4 items-center truncate">
-                                {/* <FontAwesomeIcon icon={headerLink.fontAwesomeIcon} fixedWidth /> */}
                                 {headerLink.linkText}
                             </a>
                         </Link> :
                         <a className="flex md:gap-2 lg:gap-4 items-center truncate">
-                            {/* <FontAwesomeIcon icon={headerLink.fontAwesomeIcon} fixedWidth /> */}
                             {headerLink.linkText}
                         </a>
                     }
@@ -122,11 +116,10 @@ const Header = () => {
     }
 
     return (
-        <header className={`${styles.portfolioHeader}`} ref={headerContainer} data-theme={theme}>
+        <header className={`${styles.portfolioHeader}`} ref={headerContainer}>
             <div className="w-100 md:hidden px-5 py-3 flex justify-between items-center text-2xl">
                 <Link href={"/"}>
                     <a>
-                        {/* <h1 className={`font-bold whitespace-nowrap text-ellipsis`}>Nicholas Prussen</h1> */}
                         <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
                     </a>
                 </Link>

@@ -2,17 +2,12 @@ import type { NextPage } from 'next';
 import styles from './Photography.module.scss';
 import {portfolioImages} from '../../components/images';
 import Image from 'next/future/image';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { HeaderContext } from '../_app';
 
 const Photography: NextPage = () => {
 
     const { headerHeight } = useContext(HeaderContext);
-
-    useEffect(() => {
-        document.body.style.overflow = 'auto';
-    }, [])
-
     const loadingStatus: boolean[] = [];
 
     const renderImages = () => {
@@ -29,7 +24,7 @@ const Photography: NextPage = () => {
     }
 
     return (
-        <main className='bg-dark w-full h-full md:max-w-[1536px] mx-auto' style={{marginTop: headerHeight}}>
+        <main className='bg-dark w-full h-full md:max-w-screen-xl mx-auto' style={{marginTop: headerHeight}}>
             <section className={styles.portfolio}>
                 {renderImages()}
             </section>

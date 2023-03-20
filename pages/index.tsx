@@ -1,24 +1,15 @@
 import type { NextPage } from 'next'
 import styles from "./Home.module.scss";
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { HeaderContext, ThemeContext, WindowContext } from './_app';
-
-//Slideshow images
+import { useContext } from 'react';
+import { HeaderContext, WindowContext } from './_app';
 import Intro from '../components/Home/Intro/Intro';
 import AboutMe from '../components/Home/AboutMe/AboutMe';
 import Superpowers from '../components/Home/Superpowers/Superpowers';
 import Projects from '../components/Home/Projects/Projects';
 
 const Home: NextPage = () => {
-  /** State */
   const { dimensions } = useContext(WindowContext);
   const { headerCollapsedHeight, headerHeight } = useContext(HeaderContext);
-  const { theme, updateTheme } = useContext(ThemeContext);
-
-  const introRef = useRef<HTMLDivElement>(null);
-  const superPowersRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const aboutRef = useRef<HTMLDivElement>(null);
 
   const getTopSectionHeight = () => {
     if (dimensions.width < 1024)
@@ -26,29 +17,24 @@ const Home: NextPage = () => {
     return dimensions.height - headerHeight;
   }
 
-  useEffect(() => {
-    // document.body.style.overflow = 'hidden';
-  }, []);
-
   return (
-    <div className={styles.homePage} data-theme={theme}>
-        {/* <div style={{height: dimensions.height - getTopSectionHeight()}}></div> */}
-        <section className={styles.topSection} style={{height: '100lvh'}} ref={introRef}>
+    <div className={styles.homePage}>
+        <section className={`w-full ${styles.fullscreenHeight}`}>
             <Intro />
         </section>
-        <section className='w-full flex flex-col justify-center items-center' style={{height: '100lvh'}}>
+        <section className={`${styles.aboutMe} ${styles.fullscreenHeight}`}>
             <div style={{height: dimensions.height - getTopSectionHeight()}}></div>
             <div className='flex-grow w-full'>
                 <AboutMe />
             </div>
         </section>
-        <section className='w-full flex flex-col justify-center items-center' style={{height: '100lvh'}}>
+        <section className={`${styles.superpowers} ${styles.fullscreenHeight}`}>
             <div style={{height: dimensions.height - getTopSectionHeight()}}></div>
             <div className='w-full' style={{height: dimensions.height - headerHeight}}>
                 <Superpowers />
             </div>
         </section>
-        <section className='w-full flex flex-col' ref={projectsRef} style={{height: '100lvh'}}>
+        <section className={`w-full flex flex-col ${styles.fullscreenHeight}`}>
             <div style={{height: dimensions.height - getTopSectionHeight()}}></div>
             <div className='w-full flex-grow'>
                 <Projects />

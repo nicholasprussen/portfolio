@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React from 'react';
 import styles from './Button.module.scss';
 import { faAngleDown, faAngleLeft, faAngleRight, faAnglesUp, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ThemeContext } from '../../pages/_app';
 
 export interface IButtonProps {
     buttonText: string,
@@ -18,8 +17,6 @@ export interface IButtonProps {
 }
 
 const Button = (props: IButtonProps) => {
-
-    const { theme } = useContext(ThemeContext);
 
     const renderArrow = () => {
         switch (props.arrow) {
@@ -46,7 +43,7 @@ const Button = (props: IButtonProps) => {
     }
 
     return (
-        <div className={`${styles.buttonContainer} ${props.containerClassName}`} data-theme={theme}>
+        <div className={`${styles.buttonContainer} ${props.containerClassName}`}>
             {
                 props.linkHref ?
                 <Link href={props.linkHref}>

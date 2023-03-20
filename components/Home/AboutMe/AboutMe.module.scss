@@ -1,3 +1,15 @@
+@import "../../../styles/transitions.scss";
+
+.aboutMeContainer {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.hobbyContainer {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
 .animationContainer {
     position: absolute;
     transition-property: all;
@@ -16,18 +28,6 @@
         transform: unset;
         opacity: 1;
     }
-}
-
-.startLeft[data-active="false"] {
-    transform: translateX(-100vw);
-}
-
-.startRight[data-active="false"] {
-    transform: translateX(100vw);
-}
-
-.startBottom[data-active="false"] {
-    transform: translateY(100vh);
 }
 
 .mapBackground {

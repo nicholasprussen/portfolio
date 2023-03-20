@@ -17,30 +17,6 @@
     }
 }
 
-.lineHeightNormal {
-    line-height: normal;
-}
-
-.headingTextShadow {
-    text-shadow:
-    0 1px theme('colors.primary-compliment'),
-    -1px 0 theme('colors.primary'),
-    -1px 2px theme('colors.primary-compliment'),
-    -2px 1px theme('colors.primary'),
-    -2px 3px theme('colors.primary-compliment'),
-    -3px 2px theme('colors.primary'),
-    -3px 4px theme('colors.primary-compliment'),
-    -4px 3px theme('colors.primary'),
-    -4px 5px theme('colors.primary-compliment'),
-    -5px 4px theme('colors.primary'),
-    -5px 6px theme('colors.primary-compliment'),
-    -6px 5px theme('colors.primary'),
-    -6px 7px theme('colors.primary-compliment'),
-    -7px 6px theme('colors.primary'),
-    -7px 8px theme('colors.primary-compliment'),
-    -8px 7px theme('colors.primary');
-}
-
 .photoLoading {
     background: linear-gradient(90deg, theme('colors.dark-accent') 8%, #2f3544 18%, theme('colors.dark-accent') 33%);
     border-radius: 5px;
@@ -59,12 +35,6 @@
         grid-auto-rows: 350px;
     }
 }
-
-// @media only screen and (min-width: 1024px) {
-//     .portfolio {
-//         grid-auto-rows: 400px;
-//     }
-// }
 
 @media only screen and (min-width: 1280px) {
     .portfolio {

@@ -1,0 +1,11 @@
+.startLeft[data-active="false"] {
+    transform: translateX(-100vw);
+}
+
+.startRight[data-active="false"] {
+    transform: translateX(100vw);
+}
+
+.startBottom[data-active="false"] {
+    transform: translateY(100vh);
+}

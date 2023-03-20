@@ -1,3 +1,5 @@
+@import "../../../styles/transitions.scss";
+
 .animationContainer {
     position: absolute;
     transition-property: all;
@@ -13,12 +15,6 @@
     &[data-active="true"] {
         transform: unset;
         opacity: 1;
-    }
-}
-
-.startLeft {
-    &[data-active="false"] {
-        transform: translateX(-110vw);
     }
 }
 
@@ -88,7 +84,6 @@
     }
 
     .cardContainer {
-        // max-height: 100%;
         height: 100%;
         grid-row-start: 2;
         grid-row-end: 8;

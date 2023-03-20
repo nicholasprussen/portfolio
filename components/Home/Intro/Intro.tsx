@@ -1,21 +1,19 @@
 
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import Button from '../../Button/Button';
+import React, { useContext, useEffect, useState } from 'react';
 import { IHomeCommon } from '../interfaces';
 import styles from './Intro.module.scss';
 import { faLinkedin, faInstagram, faTwitter, faGithub, IconDefinition } from "@fortawesome/free-brands-svg-icons";
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PageContext } from '../../../pages/_app';
 
 export interface IIntroProps extends IHomeCommon {}
 
 interface ISocialLink {
     icon: IconDefinition,
     href: string
-  }
+}
   
-  const socialLinks: ISocialLink[] = [
+const socialLinks: ISocialLink[] = [
     {
       icon: faInstagram,
       href: "https://www.instagram.com/nick.prussen/",
@@ -53,10 +51,8 @@ const Intro = (props: IIntroProps) => {
     const [introMessage, setIntroMessage] = useState("");
     const [typingStatus, setTypingStatus] = useState<'typing' | 'deleting'>('typing');
     const [chosenMessage, setChosenMessage] = useState("Nicholas");
-    const { activePage, updatePage } = useContext(PageContext);
 
     useEffect(() => {
-        // console.table([introMessage, typingStatus, chosenMessage]);
         const timeout = setTimeout(() => {
             if (typingStatus === 'typing' && introMessage !== chosenMessage) {
                 setIntroMessage(chosenMessage.slice(0, introMessage.length + 1));

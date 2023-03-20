@@ -1,12 +1,7 @@
 
-import { StaticImageData } from 'next/image';
-import Link from 'next/link';
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { PageContext } from '../../../pages/_app';
-import Button from '../../Button/Button';
 import { IHomeCommon } from '../interfaces';
 import styles from "./Projects.module.scss";
-import profilePic from "public/images/home/headshot2.jpg";
 
 export interface IProjectsProps extends IHomeCommon {}
 
@@ -51,7 +46,6 @@ const ProjectCards: IProjectCard[] = [
 
 const Projects = (props: IProjectsProps) => {
     const containerRef = useRef(null);
-    const { updatePage } = useContext(PageContext);
     const [isVisible, setIsVisible] = useState(false);
 
     const options = {

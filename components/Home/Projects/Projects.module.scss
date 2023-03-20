@@ -1,3 +1,5 @@
+@import "../../../styles/transitions.scss";
+
 .animationContainer {
     position: absolute;
     width: 100%;
@@ -32,12 +34,4 @@
 
 .cardInner {
     transition: all 0.2s ease-in-out;
-}
-
-.startLeft[data-active="false"] {
-    transform: translateX(-110vw);
-}
-
-.startRight[data-active="false"] {
-    transform: translateX(110vw);
 }

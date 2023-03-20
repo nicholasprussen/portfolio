@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import Button from '../../Button/Button';
+import React, { useEffect, useRef, useState } from 'react';
 import { IHomeCommon } from '../interfaces';
 import styles from './Superpowers.module.scss';
 import NextImage, { StaticImageData } from "next/image";
@@ -28,8 +27,6 @@ import snowflake from "public/images/superpowers/snowflake.png";
 import cosmosdb from "public/images/superpowers/cosmosdb.png";
 import docker from "public/images/superpowers/docker.webp";
 import php from "public/images/superpowers/php.png";
-
-import { PageContext, WindowContext } from '../../../pages/_app';
 
 interface SkillsetImage {
   /** Static image data for this image */

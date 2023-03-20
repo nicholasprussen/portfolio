@@ -1,37 +1,14 @@
-.portfolioHeader[data-theme="neumorphism"] {
+.portfolioHeader {
     li {
-        box-shadow: -5px -5px 10px theme('colors.light' / 25%), 5px 5px 10px rgba(0, 0, 0, 0.6);
-
         &[data-disabled]:not([data-disabled="true"]):hover {
             color: black;
             background-color: theme('colors.primary');
         }
-
-        &[data-disabled]:not([data-disabled="true"]){
-            &:hover {
-                box-shadow: -5px -5px 10px theme('colors.light' / 20%), 10px 10px 10px rgba(0, 0, 0, 0.8);
-            }
-        }
-
+    
         &[data-disabled="true"] {
             color: gray;
         }
-    }
-}
-
-.portfolioHeader[data-theme="default"] {
-    li {
-        // background-color: theme('colors.dark-accent');
-
-        &[data-disabled]:not([data-disabled="true"]):hover {
-            color: black;
-            background-color: theme('colors.primary');
-        }
-
-        &[data-disabled="true"] {
-            color: gray;
-        }
-
+    
         &[data-active="true"] {
             color: theme('colors.primary');
             text-decoration: underline;
@@ -43,14 +20,12 @@
 /** Classname for header UL element */
 .portfolioHeader {
     list-style-type: none;
-    // box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // border-radius: 0.25rem;
     position: fixed;
     background-color: theme('colors.dark');
     z-index: 100;
@@ -68,7 +43,6 @@
         border-radius: 0.25rem;
         font-weight: bold;
         outline-offset: 4px;
-        // box-shadow: 2px 3px 0px 0px rgb(0 0 0 / 0.2);
         align-items: center;
 
         &[data-disabled="true"] {
@@ -95,33 +69,6 @@
 }
 
 @media only screen and (max-width: 1023px) {
-    .portfolioHeader[data-theme="neumorphism"] {
-        li {
-            box-shadow: unset;
-
-            &[data-disabled]:not([data-disabled="true"]):hover {
-                color: black;
-                background-color: theme('colors.primary');
-            }
-    
-            &[data-disabled]:not([data-disabled="true"]){
-                &[data-active]:not([data-active="false"]) {
-                    box-shadow: unset;
-                }
-            }
-
-            &[data-disabled]:not([data-disabled="true"]):not([data-active="true"]){
-                &:hover {
-                    box-shadow: unset;
-                }
-            }
-    
-            &[data-disabled="true"] {
-                color: gray;
-            }
-        }
-    }
-
     .portfolioHeader {
         transition: all 0.5s ease-in-out;
         width: 100%;
