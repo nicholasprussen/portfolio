@@ -91,7 +91,10 @@ const Header = () => {
     }
 
     const getResumeLink = () => {
-        return `${window.location.href}/resume/resume.pdf`;
+        if (global?.window) {
+            return `${window?.location?.href}/resume/resume.pdf`;
+        }
+
     }
 
     /** Map header link array to formatted links */
