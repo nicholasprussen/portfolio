@@ -1,3 +1,4 @@
+'use client';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -64,6 +65,7 @@ const Header = () => {
     /** State */
     const [headerCollapsed, setHeaderCollapsed] = useState(true);
     const [headerHeight, setHeaderHeight] = useState<number>(0);
+    const [resumeLink, setResumeLink] = useState<string>("");
     const headerContainer = useRef<HTMLDivElement>(null);
     const { updateHeaderHeight, updateHeaderCollapsedHeight } = useContext(HeaderContext);
     const { dimensions } = useContext(WindowContext);
@@ -80,6 +82,7 @@ const Header = () => {
 
     useEffect(() => {
         updateHeaderCollapsedHeight(headerContainer.current?.clientHeight || 0);
+        setResumeLink(`${window.location.href}/resume/resume.pdf`);
     }, [])
 
 
@@ -88,13 +91,6 @@ const Header = () => {
         if (headerCollapsed)
             updateHeaderCollapsedHeight(headerContainer.current?.clientHeight || 0);
         updateHeaderHeight(headerContainer.current?.clientHeight || 0);
-    }
-
-    const getResumeLink = () => {
-        if (global?.window) {
-            return `${window?.location?.href}/resume/resume.pdf`;
-        }
-
     }
 
     /** Map header link array to formatted links */
@@ -120,7 +116,7 @@ const Header = () => {
         });
 
         renderedHeaderLinks.push(
-            <Button key={'resume'} href={getResumeLink()} downloadFileName="Resume.pdf" onClick={() => {}} smallPadding>
+            <Button key={'resume'} href={resumeLink} downloadFileName="Resume.pdf" onClick={() => {}} smallPadding>
                 <>Resume</>
                 <FontAwesomeIcon icon={faDownload}></FontAwesomeIcon>
             </Button>
