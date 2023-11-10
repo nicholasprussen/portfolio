@@ -93,9 +93,7 @@ const Intro = (props: IIntroProps) => {
         return socialLinks.map(link => {
             return (
             <Link href={link.href} key={index++}>
-                <a>
                 <FontAwesomeIcon icon={link.icon}></FontAwesomeIcon>
-                </a>
             </Link>
             );
         });

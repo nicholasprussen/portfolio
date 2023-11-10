@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCameraAlt, faCampground, faGamepad, faHamburger, faMapLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { WindowContext } from '../../../pages/_app';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import headshot from "../../../public/images/home/headshot2.jpg";
 
 export interface IAboutMeProps extends IHomeCommon {}

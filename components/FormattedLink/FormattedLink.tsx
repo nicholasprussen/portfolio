@@ -9,10 +9,8 @@ export interface IFormattedLinkProps {
 
 const FormattedLink = (props: IFormattedLinkProps) => {
     return (
-        <Link href={props.href}>
-            <a className={styles.formattedLink}>
-                {props.children}
-            </a>
+        <Link href={props.href} className={styles.formattedLink}>
+            {props.children}
         </Link>
     );
 };

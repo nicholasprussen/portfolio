@@ -101,10 +101,8 @@ const Header = () => {
                 <li data-disabled={headerLink.disabled} key={++index} data-active={router.pathname === headerLink.href} onClick={() => {setHeaderCollapsed(true)}}>
                     {
                         !headerLink.disabled ? 
-                        <Link href={headerLink.href}>
-                            <a className="w-full flex md:gap-2 lg:gap-4 items-center truncate">
-                                {headerLink.linkText}
-                            </a>
+                        <Link href={headerLink.href} className="w-full flex md:gap-2 lg:gap-4 items-center truncate">
+                            {headerLink.linkText}
                         </Link> :
                         <a className="flex md:gap-2 lg:gap-4 items-center truncate">
                             {headerLink.linkText}
@@ -119,9 +117,7 @@ const Header = () => {
         <header className={`${styles.portfolioHeader}`} ref={headerContainer}>
             <div className="w-100 md:hidden px-5 py-3 flex justify-between items-center text-2xl">
                 <Link href={"/"}>
-                    <a>
-                        <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
-                    </a>
+                    <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
                 </Link>
                 <FontAwesomeIcon icon={faHamburger} className="hover:text-primary cursor-pointer" onClick={() => {setHeaderCollapsed(!headerCollapsed)}}/>
             </div>

@@ -47,9 +47,7 @@ const Button = (props: IButtonProps) => {
             {
                 props.linkHref ?
                 <Link href={props.linkHref}>
-                    <a>
-                        {renderButton()}
-                    </a>
+                    {renderButton()}
                 </Link> :
                 renderButton()
             }
