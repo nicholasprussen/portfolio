@@ -151,20 +151,20 @@ const AboutMe = (props: IAboutMeProps) => {
                         </div>
                     </div>
                     <div className='row-span-1 col-span-8 relative' ref={schoolContainerRef}>
-                        <div className={`${styles.animationContainer} ${styles.startLeft} delay-[400ms] bg-dark flex justify-between items-center p-2 xs:p-4 gap-4 text-xl xs:text-2xl`} data-active={schoolIsVisible}>
-                            <div className={`absolute top-0 right-0 w-full h-full z-40 rounded-lg hidden xs:block ${styles.collegeSection}`}></div>
-                            <div className='z-30'>
-                                <p><b>Boise State University</b></p>
-                                <div><p className='pr-1 inline'>&#x2022;</p><b>Bachelor&lsquo;s</b> in <b>Computer Science</b></div>
+                        <div className={`${styles.animationContainer} ${styles.startLeft} delay-[400ms] bg-dark flex justify-between items-center p-2 xs:p-4 gap-4 text-2xl xs:text-3xl sm:text-4xl md:text-5xl`} data-active={schoolIsVisible}>
+                            <div className={`absolute top-0 right-0 w-full h-full z-40 rounded-lg block ${styles.collegeSection}`}></div>
+                            <div className='z-50'>
+                                {/* <p><b>Boise State University</b></p> */}
+                                <div><b>Bachelor&lsquo;s in Computer Science</b></div>
                             </div>
                         </div>
                     </div>
                     <div className='col-start-1 col-end-9 row-start-7 row-span-1 h-full w-full relative' ref={employedContainerRef}>
-                        <div className={`${styles.animationContainer} ${styles.startRight} delay-300 bg-dark p-2 xs:p-4 text-xl xs:text-2xl flex items-center xs:justify-between`} data-active={employedIsVisible}>
-                            <div className={`absolute top-0 right-0 w-full h-full z-40 rounded-lg hidden xs:block ${styles.employeeSection}`}></div>
-                            <div className='z-30'>
-                                <p><b>Micron Technology Inc</b></p>
-                                <div><p className='pr-1 inline'>&#x2022;</p><b>Software Engineer</b> in <b>GQIT</b></div> 
+                        <div className={`${styles.animationContainer} ${styles.startRight} delay-300 bg-dark p-2 xs:p-4 text-2xl xs:text-3xl sm:text-4xl md:text-5xl flex items-center xs:justify-between`} data-active={employedIsVisible}>
+                            <div className={`absolute top-0 right-0 w-full h-full z-40 rounded-lg ${styles.employeeSection}`}></div>
+                            <div className='z-50 text-[1.1em]'>
+                                {/* <p><b>Micron Technology Inc</b></p> */}
+                                <div><b>Full Stack Software Engineer</b></div> 
                             </div>
                         </div>
                     </div>

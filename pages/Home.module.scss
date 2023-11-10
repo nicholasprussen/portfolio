@@ -15,3 +15,21 @@
     height: fit-content;
     overflow: hidden;
 }
+
+@media only screen and (min-width: 512px) {
+    .aboutMe {
+        min-height: 700px;
+    }
+}
+
+@media only screen and (min-width: 767px) {
+    .aboutMe {
+        min-height: 800px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .aboutMe {
+        min-height: 1024px;
+    }
+}

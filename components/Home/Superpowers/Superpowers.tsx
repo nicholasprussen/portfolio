@@ -27,6 +27,7 @@ import snowflake from "public/images/superpowers/snowflake.png";
 import cosmosdb from "public/images/superpowers/cosmosdb.png";
 import docker from "public/images/superpowers/docker.webp";
 import php from "public/images/superpowers/php.png";
+import Image from 'next/image';
 
 interface SkillsetImage {
   /** Static image data for this image */
@@ -217,8 +218,8 @@ const Superpowers = (props: ISuperpowersProps) => {
                 <div className='relative h-[5rem] w-full mb-2' style={{gridColumnStart: gridColumnStart, gridColumnEnd: gridColumEnd}} key={index}>
                     <div className={`${styles.animationContainer} ${styles.startLeft}`} style={{transitionDelay: `${index}00ms`}} data-active={isVisible}>
                         <div className={`${styles.superpowerCard}`}>
-                            <div className={styles.firstCol}>
-                                <NextImage src={image.image} objectFit={'contain'}></NextImage>
+                            <div className={styles.firstCol} style={{position: 'relative'}}>
+                                <Image fill src={image.image} style={{objectFit: 'contain'}} alt={image.alt}></Image>
                             </div>
                             <div className={styles.secondCol}>
                                 <div className={styles.firstRow}>
