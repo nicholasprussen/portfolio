@@ -2,11 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Header.module.scss";
-import { faHouse, IconDefinition, faCameraRetro, faHamburger } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, IconDefinition, faCameraRetro, faHamburger, faFileDownload, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import AnimateHeight, { Height } from "react-animate-height";
 import { HeaderContext, WindowContext } from "../../pages/_app";
-
+import Button from "../Button/Button";
 export interface IHeaderLinks {
     /** Link that the anchor tag will use */
     href: string,
@@ -90,13 +90,17 @@ const Header = () => {
         updateHeaderHeight(headerContainer.current?.clientHeight || 0);
     }
 
+    const getResumeLink = () => {
+        return `${window.location.href}/resume/resume.pdf`;
+    }
+
     /** Map header link array to formatted links */
     const mapHeaderLinks = (headerLinks: IHeaderLinks[]) => {
         if (!headerLinks)
             return <></>;
         /** List items need keys */
         let index = 0;
-        return headerLinks.map((headerLink) => {
+        const renderedHeaderLinks = headerLinks.map((headerLink) => {
             return (
                 <li data-disabled={headerLink.disabled} key={++index} data-active={router.pathname === headerLink.href} onClick={() => {setHeaderCollapsed(true)}}>
                     {
@@ -110,7 +114,16 @@ const Header = () => {
                     }
                 </li>
             );
-        })
+        });
+
+        renderedHeaderLinks.push(
+            <Button key={'resume'} href={getResumeLink()} downloadFileName="Resume.pdf" onClick={() => {}} smallPadding>
+                <>Resume</>
+                <FontAwesomeIcon icon={faDownload}></FontAwesomeIcon>
+            </Button>
+        )
+
+        return renderedHeaderLinks;
     }
 
     return (
@@ -130,7 +143,7 @@ const Header = () => {
                         {mapHeaderLinks(HeaderLinks)}
                     </ul>
             </AnimateHeight>
-            <ul className="hidden md:flex justify-center flex-col md:flex-row py-2 md:p-8 w-full md:w-auto gap-2 md:gap-5 md:bg-dark overflow-hidden">
+            <ul className="hidden md:flex justify-center flex-col md:flex-row py-2 md:p-8 w-full md:w-auto gap-2 md:gap-5 md:bg-dark overflow-hidden items-center">
                 {mapHeaderLinks(HeaderLinks)}
             </ul>
         </header>
