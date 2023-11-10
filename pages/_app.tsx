@@ -2,6 +2,7 @@ import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { Footer, Header } from '../components'
 import { createContext, useEffect, useState } from 'react'
+import { ISiteData, SiteData } from './information'
 
 interface IHeaderContext {
   headerHeight: number,
@@ -32,13 +33,17 @@ const windowContext: IWindowContext = {
   updateDimensions: (dimensions: IWindowDimensions) => {}
 }
 
+const siteDataContext: ISiteData = SiteData;
+
 export const HeaderContext = createContext(headerContext);
 export const WindowContext = createContext(windowContext);
+export const SiteDataContext = createContext(siteDataContext);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [headerHeight, setHeaderHeight] = useState<number>(headerContext.headerHeight);
   const [headerCollapsedHeight, setHeaderCollapsedHeight] = useState<number>(headerContext.headerCollapsedHeight);
   const [dimensions, setDimensions] = useState<IWindowDimensions>(windowContext.dimensions);
+  const [siteData] = useState<ISiteData>(siteDataContext);
 
   const updateHeaderHeight = (height: number) => {
     setHeaderHeight(height);
@@ -53,6 +58,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   useEffect(() => {
+    console.log(siteData)
     if (window) {
         setDimensions({width: window.innerWidth, height: window.innerHeight});
     }
@@ -70,6 +76,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <WindowContext.Provider value={{dimensions, updateDimensions}}>
+    <SiteDataContext.Provider value={siteData}>
     <HeaderContext.Provider value={{headerHeight, headerCollapsedHeight, updateHeaderCollapsedHeight, updateHeaderHeight}}>
       <div className='w-full grid grid-rows-[auto_1fr_auto]' style={{minHeight: '100lvh'}}>
         <Header />
@@ -77,6 +84,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Footer />
       </div>
     </HeaderContext.Provider>
+    </SiteDataContext.Provider>
     </WindowContext.Provider>
     
   )

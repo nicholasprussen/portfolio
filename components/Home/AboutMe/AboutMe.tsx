@@ -3,7 +3,7 @@ import { IHomeCommon } from '../interfaces';
 import styles from './AboutMe.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCameraAlt, faCampground, faGamepad, faHamburger, faMapLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { WindowContext } from '../../../pages/_app';
+import { SiteDataContext, WindowContext } from '../../../pages/_app';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import Image from 'next/image';
 import headshot from "../../../public/images/home/headshot2.jpg";
@@ -11,6 +11,8 @@ import headshot from "../../../public/images/home/headshot2.jpg";
 export interface IAboutMeProps extends IHomeCommon {}
 
 const AboutMe = (props: IAboutMeProps) => {
+
+    const siteData = useContext(SiteDataContext);
 
     const headshotContainerRef = useRef(null);
     const hobbiesContainerRef = useRef(null);
@@ -115,31 +117,26 @@ const AboutMe = (props: IAboutMeProps) => {
             <div className='h-full max-h-3/4 w-full flex flex-col py-2 items-center overflow-hidden'>
                 <div className={`${styles.aboutMeContainer} flex-grow grid gap-2 w-full px-4 max-h-full md:max-w-5xl xl:max-w-7xl`}>
                     <div className={`text-5xl md:text-6xl font-bold text-center col-span-full row-span-1 mb-2`}>
-                        About Me
+                        {siteData.aboutMe.title}
                     </div>
                     <div className='row-start-2 row-end-6 col-start-1 col-end-6 h-full w-full relative' ref={headshotContainerRef}>
                         <div className={`${styles.animationContainer} ${styles.startLeft}`} data-active={headshotIsVisible}>
-                            <Image src={headshot} alt={"Picture of Nicholas Prussen"} fill style={{objectFit: 'cover'}} className="rounded-lg"></Image>
+                            <Image src={siteData.personalInfo.headshot} alt={`Picture of ${siteData.personalInfo.name}`} fill style={{objectFit: 'cover'}} className="rounded-lg"></Image>
                         </div>
                     </div>
                     <div className='row-start-2 row-end-4 col-start-6 col-end-9 h-full w-full relative' ref={hobbiesContainerRef}>
                         <div className={`${styles.animationContainer} ${styles.startRight} bg-dark p-2`} data-active={hobbiesIsVisible}>
                             <div className={`${styles.hobbyContainer} mx-auto h-full grid w-[90%]`}>
                                 <div className='flex col-span-2 justify-center items-center'>
-                                    <p className='text-xl text-center xs:text-3xl md:text-4xl'><b>Hobbies</b></p>
+                                    <p className='text-xl text-center xs:text-3xl md:text-4xl'><b>{siteData.aboutMe.hobbiesTitle}</b></p>
                                 </div>
-                                <div className='w-full h-full flex justify-center items-center'>
-                                    <FontAwesomeIcon icon={faCameraAlt} size={getIconSize()}></FontAwesomeIcon>
-                                </div>
-                                <div className='w-full h-full flex justify-center items-center'>
-                                    <FontAwesomeIcon icon={faCampground} size={getIconSize()}></FontAwesomeIcon>
-                                </div>
-                                <div className='w-full h-full flex justify-center items-center'>
-                                    <FontAwesomeIcon icon={faGamepad} size={getIconSize()}></FontAwesomeIcon>
-                                </div>
-                                <div className='w-full h-full flex justify-center items-center'>
-                                    <FontAwesomeIcon icon={faHamburger} size={getIconSize()}></FontAwesomeIcon>
-                                </div>
+                                {
+                                    siteData.aboutMe.hobbies.map(hobbyIcon => (
+                                        <div className='w-full h-full flex justify-center items-center' key={hobbyIcon.iconName}>
+                                            <FontAwesomeIcon icon={hobbyIcon} size={getIconSize()}></FontAwesomeIcon>
+                                        </div>
+                                    ))
+                                }
                             </div>
                         </div>
                     </div>
@@ -147,7 +144,7 @@ const AboutMe = (props: IAboutMeProps) => {
                         <div className={`${styles.animationContainer} ${styles.startRight} ${styles.mapBackground} delay-200 bg-dark flex flex-col items-center justify-center text-xl relative`} data-active={locatedIsVisible}>
                             <div className='absolute top-0 right-0 w-full h-full bg-dark-accent opacity-[85%] z-30 rounded-lg'></div>
                             <FontAwesomeIcon icon={faMapLocationDot} size={getIconSize()} className="z-40"></FontAwesomeIcon>
-                            <p className='text-center z-40 xs:text-3xl md:text-4xl'><b>Boise, ID</b></p>
+                            <p className='text-center z-40 xs:text-3xl md:text-4xl'><b>{siteData.personalInfo.location}</b></p>
                         </div>
                     </div>
                     <div className='row-span-1 col-span-8 relative' ref={schoolContainerRef}>
@@ -155,7 +152,7 @@ const AboutMe = (props: IAboutMeProps) => {
                             <div className={`absolute top-0 right-0 w-full h-full z-40 rounded-lg block ${styles.collegeSection}`}></div>
                             <div className='z-50'>
                                 {/* <p><b>Boise State University</b></p> */}
-                                <div><b>Bachelor&lsquo;s in Computer Science</b></div>
+                                <div><b>${siteData.aboutMe.degree}</b></div>
                             </div>
                         </div>
                     </div>
@@ -164,7 +161,7 @@ const AboutMe = (props: IAboutMeProps) => {
                             <div className={`absolute top-0 right-0 w-full h-full z-40 rounded-lg ${styles.employeeSection}`}></div>
                             <div className='z-50 text-[1.1em]'>
                                 {/* <p><b>Micron Technology Inc</b></p> */}
-                                <div><b>Full Stack Software Engineer</b></div> 
+                                <div><b>${siteData.aboutMe.jobTitle}</b></div> 
                             </div>
                         </div>
                     </div>

@@ -6,8 +6,10 @@ import styles from "./Header.module.scss";
 import { faHouse, IconDefinition, faCameraRetro, faHamburger, faFileDownload, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import AnimateHeight, { Height } from "react-animate-height";
-import { HeaderContext, WindowContext } from "../../pages/_app";
+import { HeaderContext, SiteDataContext, WindowContext } from "../../pages/_app";
 import Button from "../Button/Button";
+import { SiteData } from "../../pages/information";
+
 export interface IHeaderLinks {
     /** Link that the anchor tag will use */
     href: string,
@@ -19,48 +21,10 @@ export interface IHeaderLinks {
     fontAwesomeIcon: IconDefinition
 }
 
-/** Pre-defined header links */
-export const HeaderLinks: IHeaderLinks[] = [
-    {
-        href: '/',
-        linkText: 'Home',
-        disabled: false,
-        fontAwesomeIcon: faHouse
-    },
-    // {
-    //     href: '/about',
-    //     linkText: 'About',
-    //     disabled: true,
-    //     fontAwesomeIcon: faAddressCard
-    // },
-    {
-        href: '/photography',
-        linkText: 'Photography',
-        disabled: false,
-        fontAwesomeIcon: faCameraRetro
-    },
-    // {
-    //     href: '/contact',
-    //     linkText: 'Contact',
-    //     disabled: true,
-    //     fontAwesomeIcon: faEnvelope
-    // },
-    // {
-    //     href: '/projects',
-    //     linkText: 'Projects',
-    //     disabled: true,
-    //     fontAwesomeIcon: faDiagramProject
-    // },
-    // {
-    //     href: '/visual-resume',
-    //     linkText: 'Visual Resume',
-    //     disabled: true,
-    //     fontAwesomeIcon: faFileWord
-    // },
-]
-
 /** Site-wide Header Component */
 const Header = () => {
+
+    const siteData = useContext(SiteDataContext);
 
     /** State */
     const [headerCollapsed, setHeaderCollapsed] = useState(true);
@@ -93,6 +57,18 @@ const Header = () => {
         updateHeaderHeight(headerContainer.current?.clientHeight || 0);
     }
 
+    const buildResumeButton = () => {
+        const joinedName = siteData.personalInfo.name.toLowerCase().split(" ").join("_");
+        const resumeFileName = `${joinedName}_${siteData.header.resumeButtonData.label.toLowerCase()}.pdf`;
+        return (
+            <Button key={siteData.header.resumeButtonData.label} href={resumeLink} downloadFileName={resumeFileName} onClick={() => {}} smallPadding>
+                <>{siteData.header.resumeButtonData.label}</>
+                <FontAwesomeIcon icon={siteData.header.resumeButtonData.faIcon}></FontAwesomeIcon>
+            </Button>
+        )
+    }
+
+
     /** Map header link array to formatted links */
     const mapHeaderLinks = (headerLinks: IHeaderLinks[]) => {
         if (!headerLinks)
@@ -115,12 +91,8 @@ const Header = () => {
             );
         });
 
-        renderedHeaderLinks.push(
-            <Button key={'resume'} href={resumeLink} downloadFileName="Resume.pdf" onClick={() => {}} smallPadding>
-                <>Resume</>
-                <FontAwesomeIcon icon={faDownload}></FontAwesomeIcon>
-            </Button>
-        )
+        renderedHeaderLinks
+        renderedHeaderLinks.push(buildResumeButton())
 
         return renderedHeaderLinks;
     }
@@ -129,9 +101,9 @@ const Header = () => {
         <header className={`${styles.portfolioHeader}`} ref={headerContainer}>
             <div className="w-100 md:hidden px-5 py-3 flex justify-between items-center text-2xl">
                 <Link href={"/"}>
-                    <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={siteData.header.homeIcon}></FontAwesomeIcon>
                 </Link>
-                <FontAwesomeIcon icon={faHamburger} className="hover:text-primary cursor-pointer" onClick={() => {setHeaderCollapsed(!headerCollapsed)}}/>
+                <FontAwesomeIcon icon={siteData.header.hamburgerIcon} className="hover:text-primary cursor-pointer" onClick={() => {setHeaderCollapsed(!headerCollapsed)}}/>
             </div>
             <AnimateHeight
                 duration={750}
@@ -139,11 +111,11 @@ const Header = () => {
                 className="md:hidden"
                 onHeightAnimationEnd={(newHeight) => headerHeightChanged(newHeight)}>
                     <ul className="flex flex-col md:flex-row md:py-4 w-full md:w-auto md:gap-5 lg:bg-dark overflow-hidden">
-                        {mapHeaderLinks(HeaderLinks)}
+                        {mapHeaderLinks(siteData.header.headerLinks)}
                     </ul>
             </AnimateHeight>
             <ul className="hidden md:flex justify-center flex-col md:flex-row py-2 md:p-8 w-full md:w-auto gap-2 md:gap-5 md:bg-dark overflow-hidden items-center">
-                {mapHeaderLinks(HeaderLinks)}
+                {mapHeaderLinks(siteData.header.headerLinks)}
             </ul>
         </header>
     )
