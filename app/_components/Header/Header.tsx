@@ -1,14 +1,13 @@
 'use client';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./Header.module.scss";
-import { faHouse, IconDefinition, faCameraRetro, faHamburger, faFileDownload, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import AnimateHeight, { Height } from "react-animate-height";
-import { HeaderContext, SiteDataContext, WindowContext } from "../../pages/_app";
+import { HeaderContext, SiteDataContext, WindowContext } from "../../layout";
 import Button from "../Button/Button";
-import { SiteData } from "../../pages/information";
 
 export interface IHeaderLinks {
     /** Link that the anchor tag will use */
@@ -34,6 +33,7 @@ const Header = () => {
     const { updateHeaderHeight, updateHeaderCollapsedHeight } = useContext(HeaderContext);
     const { dimensions } = useContext(WindowContext);
     const router = useRouter();
+    const pathname = usePathname();
 
     /** UseEffects */
     useEffect(() => {
@@ -77,7 +77,7 @@ const Header = () => {
         let index = 0;
         const renderedHeaderLinks = headerLinks.map((headerLink) => {
             return (
-                <li data-disabled={headerLink.disabled} key={++index} data-active={router.pathname === headerLink.href} onClick={() => {setHeaderCollapsed(true)}}>
+                <li data-disabled={headerLink.disabled} key={++index} data-active={pathname === headerLink.href} onClick={() => {setHeaderCollapsed(true)}}>
                     {
                         !headerLink.disabled ? 
                         <Link href={headerLink.href} className="w-full flex md:gap-2 lg:gap-4 items-center truncate">

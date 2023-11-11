@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { IHomeCommon } from '../interfaces';
 import styles from "./Projects.module.scss";
-import { SiteDataContext } from '../../../pages/_app';
+import { SiteDataContext } from '../../../layout';
 
 export interface IProjectsProps extends IHomeCommon {}
 

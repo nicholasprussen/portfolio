@@ -2,11 +2,10 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { IHomeCommon } from '../interfaces';
 import styles from './AboutMe.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCameraAlt, faCampground, faGamepad, faHamburger, faMapLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { SiteDataContext, WindowContext } from '../../../pages/_app';
+import { faMapLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { SiteDataContext, WindowContext } from '../../../layout';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import Image from 'next/image';
-import headshot from "../../../public/images/home/headshot2.jpg";
 
 export interface IAboutMeProps extends IHomeCommon {}
 
@@ -152,7 +151,7 @@ const AboutMe = (props: IAboutMeProps) => {
                             <div className={`absolute top-0 right-0 w-full h-full z-40 rounded-lg block ${styles.collegeSection}`}></div>
                             <div className='z-50'>
                                 {/* <p><b>Boise State University</b></p> */}
-                                <div><b>${siteData.aboutMe.degree}</b></div>
+                                <div><b>{siteData.aboutMe.degree}</b></div>
                             </div>
                         </div>
                     </div>
@@ -161,7 +160,7 @@ const AboutMe = (props: IAboutMeProps) => {
                             <div className={`absolute top-0 right-0 w-full h-full z-40 rounded-lg ${styles.employeeSection}`}></div>
                             <div className='z-50 text-[1.1em]'>
                                 {/* <p><b>Micron Technology Inc</b></p> */}
-                                <div><b>${siteData.aboutMe.jobTitle}</b></div> 
+                                <div><b>{siteData.aboutMe.jobTitle}</b></div> 
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,7 @@ import styles from './Intro.module.scss';
 import { faLinkedin, faInstagram, faTwitter, faGithub, IconDefinition } from "@fortawesome/free-brands-svg-icons";
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { SiteDataContext } from '../../../pages/_app';
+import { SiteDataContext } from '../../../layout';
 
 export interface IIntroProps extends IHomeCommon {}
 

@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
 import styles from './Photography.module.scss';
-import {portfolioImages} from '../../components/images';
+import {portfolioImages} from '../_data/images';
 import Image from 'next/image';
 import { useContext } from 'react';
-import { HeaderContext } from '../_app';
+import { HeaderContext } from '../layout';
 
 const Photography: NextPage = () => {
 

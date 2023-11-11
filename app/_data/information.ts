@@ -1,11 +1,7 @@
 import { IconDefinition, faCameraAlt, faCameraRetro, faCampground, faCopyright, faDownload, faGamepad, faHamburger, faHouse } from "@fortawesome/free-solid-svg-icons"
-import { IHeaderLinks } from "../components/Header/Header"
 import { StaticImageData } from "next/image"
 import headshot from "public/images/home/headshot2.jpg";
-import { ISocialLink } from "../components/Home/Intro/Intro";
 import { faGithub, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { IProjectCard } from "../components/Home/Projects/Projects";
-import { SkillsetImage } from "../components/Home/Superpowers/Superpowers";
 
 //Slideshow images
 import angular from "public/images/superpowers/angular.png";
@@ -29,6 +25,10 @@ import snowflake from "public/images/superpowers/snowflake.png";
 import cosmosdb from "public/images/superpowers/cosmosdb.png";
 import docker from "public/images/superpowers/docker.webp";
 import php from "public/images/superpowers/php.png";
+import { IHeaderLinks } from "../_components/Header/Header";
+import { ISocialLink } from "../_components/Home/Intro/Intro";
+import { IProjectCard } from "../_components/Home/Projects/Projects";
+import { SkillsetImage } from "../_components/Home/Superpowers/Superpowers";
 
 export interface ISiteData {
     personalInfo: {

@@ -7,7 +7,7 @@ export interface ISuperpowersProps extends IHomeCommon {}
 
 //Slideshow images
 import Image from 'next/image';
-import { SiteData } from '../../../pages/information';
+import { SiteData } from '../../../_data/information';
 
 export interface SkillsetImage {
   /** Static image data for this image */

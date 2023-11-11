@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from "@fortawesome/free-regular-svg-icons";
 import React, { useContext } from 'react';
-import { SiteData } from '../../pages/information';
-import { SiteDataContext } from '../../pages/_app';
+import { SiteData } from '../../_data/information';
+import { SiteDataContext } from '../../layout';
 
 export interface IFooterProps {}
 
