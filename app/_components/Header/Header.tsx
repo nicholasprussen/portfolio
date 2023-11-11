@@ -92,7 +92,11 @@ const Header = () => {
         });
 
         renderedHeaderLinks
-        renderedHeaderLinks.push(buildResumeButton())
+        renderedHeaderLinks.push(
+            <li className="py-1">
+                {buildResumeButton()}
+            </li>
+        )
 
         return renderedHeaderLinks;
     }
