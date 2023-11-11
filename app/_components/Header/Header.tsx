@@ -46,7 +46,7 @@ const Header = () => {
 
     useEffect(() => {
         updateHeaderCollapsedHeight(headerContainer.current?.clientHeight || 0);
-        setResumeLink(`${window.location.href}/resume/resume.pdf`);
+        setResumeLink(`${window.location.href}/resume/nicholas_prussen_resume.pdf`);
     }, [])
 
 
