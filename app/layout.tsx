@@ -64,7 +64,6 @@ export default function RootLayout({
     }
 
     useEffect(() => {
-        console.log(siteData)
         if (window) {
             setDimensions({ width: window.innerWidth, height: window.innerHeight });
         }

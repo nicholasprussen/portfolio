@@ -23,25 +23,28 @@ const Superpowers = (props: ISuperpowersProps) => {
     const containerRef = useRef(null);
     const superpowerScrollRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
-
-    const options = {
+    const [options] = useState<any>({
         root: null,
         rootMargin: "0px",
         threshold: 0.2
-    }
+    });
 
     useEffect(() => {
+        let observerRefValue: HTMLDivElement;
         const observer = new IntersectionObserver((entries) => {
             const [ entry ] = entries;
             if (entry.isIntersecting)
                 setIsVisible(entry.isIntersecting);
         }, options);
-        if (superpowerScrollRef.current) observer.observe(superpowerScrollRef.current);
+        if (superpowerScrollRef.current) {
+            observer.observe(superpowerScrollRef.current);
+            observerRefValue = superpowerScrollRef.current;
+        }
 
         return () => {
-            if (superpowerScrollRef.current) observer.unobserve(superpowerScrollRef.current);
+            if (observerRefValue) observer.unobserve(observerRefValue);
         }
-    }, [containerRef])
+    }, [containerRef, options])
 
     const getWidth = (level: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert'): string => {
         switch (level) {

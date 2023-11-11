@@ -72,7 +72,7 @@ const Intro = (props: IIntroProps) => {
         <div className='w-full h-full max-h-full max-w-full'>
             <div className='h-[100%] w-full flex flex-col justify-center items-center'>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-center relative">
-                    <span className='pr-[0.5ch] font-normal'>Hi I'm</span><span>{introMessage}</span>
+                    <span className='pr-[0.5ch] font-normal'>Hi I&lsquo;m</span><span>{introMessage}</span>
                     <div className={styles.blinkingCursor}></div>
                 </h1>
                 <div className={`flex gap-8 text-[1.8em] xs:text-[2em] lg:text-[2.5em] p-4 ${styles.socialLinks}`}>
