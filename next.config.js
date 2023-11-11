@@ -4,7 +4,7 @@ const nextConfig = {
     unoptimized: true
   },
   output: 'export',
-  basePath: "/nextjs-github-pages",
+  // basePath: "/nextjs-github-pages",
   reactStrictMode: true,
   swcMinify: true,
 }
