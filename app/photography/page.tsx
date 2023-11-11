@@ -18,7 +18,7 @@ const Photography: NextPage = () => {
             return (
                 <div className={`relative overflow-hidden rounded-xl ${image.includes("Vertical") ? styles.verticalImg : ''}`} key={index++}>
                     <div className={`${loadingStatus[index] ? 'block' : 'hidden'} absolute w-full h-full top-0 right-0 bg-dark ${styles.photoLoading}`}></div>
-                    <Image fill style={{objectFit: 'cover'}} src={image} alt={image.toString()} loading="lazy" onLoadingComplete={() => loadingStatus[index] = false}></Image>
+                    <Image fill style={{objectFit: 'cover'}} src={image} alt={image.toString()} loading="lazy" onLoad={() => loadingStatus[index] = false}></Image>
                 </div>
             )
         })
